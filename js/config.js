@@ -7,6 +7,11 @@ window.DECK = {
   logo: "assets/logo.svg",                     // TODO: replace with your logo file
   contact: "hello@yourdomain.ge",              // TODO: email / website
 
+  // Closing slide QR code. Drop your generated image at this path (png/svg).
+  // Until the file exists, a dashed placeholder is shown.
+  qr: "assets/qr.png",                         // TODO: generate and add
+  qrCaption: "Scan to try it",
+
   // Demo slide: drop a screen recording at this path (mp4).
   // Until the file exists, the slide shows a placeholder frame.
   demoVideo: "assets/demo.mp4",
@@ -14,7 +19,6 @@ window.DECK = {
 
   // TODO: team members. `photo` is optional (path to an image); initials are used otherwise.
   team: [
-    { name: "Name Surname", role: "Role", photo: "" },
     { name: "Name Surname", role: "Role", photo: "" },
     { name: "Name Surname", role: "Role", photo: "" },
     { name: "Name Surname", role: "Role", photo: "" },

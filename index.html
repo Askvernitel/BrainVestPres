@@ -66,8 +66,9 @@
           <ol class="steps">
             <li class="fragment" data-fragment-index="0"><span>01</span>Scan</li>
             <li class="fragment" data-fragment-index="1"><span>02</span>Separate</li>
-            <li class="fragment" data-fragment-index="2"><span>03</span>Rearrange</li>
+            <li class="fragment" data-fragment-index="2"><span>03</span>Add &amp;<br>Rearrange</li>
           </ol>
+          <span class="fragment step-trigger" data-fragment-index="3" aria-hidden="true"></span>
         </div>
         <svg class="scene" id="scene-main" aria-label="A room is scanned, furniture is separated, then moved"></svg>
       </div>
@@ -76,6 +77,8 @@
         Click 2 · Separate: RANSAC finds the largest planes (walls, floor, ceiling) and cuts them away.
         What is left falls apart into separate islands, and each island is one piece of furniture.
         Click 3 · Rearrange: every piece can now be moved on its own inside the real room.
+        Click 4 · Add: drag furniture in from any website (Pinterest, a store, a catalogue) and it
+        drops into your room as a 3D object you can move like everything else.
       </aside>
     </section>
 
@@ -193,7 +196,78 @@
       </aside>
     </section>
 
-    <!-- 9 · TEAM ──────────────────────────────────────────── -->
+    <!-- 9 · COMPETITION ─────────────────────────────────── -->
+    <section class="s-compete">
+      <div class="frame">
+        <p class="kicker rise">Compared to others</p>
+        <h2 class="rise" style="--d:.1">Others show the room.<br><span class="muted">We let you change it.</span></h2>
+        <table class="compare">
+          <thead>
+            <tr class="rise" style="--d:.25">
+              <th></th>
+              <th>Floor-plan apps<small>e.g. Planner 5D</small></th>
+              <th>3D tours<small>e.g. Matterport</small></th>
+              <th>Retail AR<small>e.g. IKEA Kreativ</small></th>
+              <th>3D scanners<small>e.g. Polycam</small></th>
+              <th class="us" data-deck="name"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="rise" style="--d:.45">
+              <td>Scans your real room</td>
+              <td class="no"></td><td class="yes"></td><td class="yes"></td><td class="yes"></td><td class="us yes"></td>
+            </tr>
+            <tr class="rise" style="--d:.65">
+              <td>Your own furniture becomes movable</td>
+              <td class="no"></td><td class="no"></td><td class="no"></td><td class="no"></td><td class="us yes"></td>
+            </tr>
+            <tr class="rise" style="--d:.85">
+              <td>Add items from any website</td>
+              <td class="no"></td><td class="no"></td><td class="part">Own catalogue</td><td class="no"></td><td class="us yes"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <aside class="notes">
+        Floor-plan apps make you draw the room by hand. 3D tours and scanners capture the room as one
+        frozen model. Retail AR can erase your furniture and place the store's own products.
+        Nobody turns your existing furniture into separate objects you can move, and nobody lets you
+        bring in items from any website.
+      </aside>
+    </section>
+
+    <!-- 10 · SWOT ─────────────────────────────────────────── -->
+    <section class="s-swot">
+      <div class="frame">
+        <p class="kicker rise">SWOT</p>
+        <div class="swot">
+          <div class="q q-s pop" style="--d:.15">
+            <b>S</b><h3>Strengths</h3>
+            <ul><li>Only a phone camera needed</li><li>Automatic furniture separation</li><li>Real-world scale</li></ul>
+          </div>
+          <div class="q q-w pop" style="--d:.3">
+            <b>W</b><h3>Weaknesses</h3>
+            <ul><li>Early stage, small team</li><li>Scan quality depends on light</li><li>Processing takes time</li></ul>
+          </div>
+          <div class="q q-o pop" style="--d:.45">
+            <b>O</b><h3>Opportunities</h3>
+            <ul><li>Growing housing market</li><li>Online furniture sales</li><li>Interactive property listings</li></ul>
+          </div>
+          <div class="q q-t pop" style="--d:.6">
+            <b>T</b><h3>Threats</h3>
+            <ul><li>Big players adding similar features</li><li>Phone 3D sensors becoming standard</li><li>Slow adoption by agencies</li></ul>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        Strengths: no special hardware and automatic separation. Weaknesses: we are early and scan
+        quality depends on conditions. Opportunities: the growing market from the problem slide, plus
+        furniture e-commerce and listings. Threats: large companies and built-in phone scanning;
+        our answer is speed and focus on movable furniture.
+      </aside>
+    </section>
+
+    <!-- 11 · TEAM ──────────────────────────────────────────── -->
     <section class="s-team">
       <div class="frame">
         <p class="kicker rise">Team</p>
@@ -203,14 +277,23 @@
       <aside class="notes">One sentence per person: what they own and why they are the right person.</aside>
     </section>
 
-    <!-- 10 · CLOSE ────────────────────────────────────────── -->
+    <!-- 12 · CLOSE ────────────────────────────────────────── -->
     <section class="s-close">
       <svg class="scene scene-bg" id="scene-close" aria-hidden="true"></svg>
-      <div class="frame center">
-        <img class="logo logo-sm pop" data-deck-logo alt="Logo">
-        <h1 class="rise" style="--d:.2">Thank you.</h1>
-        <p class="lead rise" style="--d:.5" data-deck="tagline"></p>
-        <p class="contact rise" style="--d:.8" data-deck="contact"></p>
+      <div class="frame close-grid">
+        <div class="close-text">
+          <img class="logo logo-sm pop" data-deck-logo alt="Logo">
+          <h1 class="rise" style="--d:.2">Thank you.</h1>
+          <p class="lead rise" style="--d:.5" data-deck="tagline"></p>
+          <p class="contact rise" style="--d:.8" data-deck="contact"></p>
+        </div>
+        <div class="close-qr">
+          <div class="qr pop" style="--d:1"> <!-- TODO: QR via js/config.js -->
+            <img data-deck-qr alt="QR code">
+            <div class="qr-placeholder"><span>QR code</span><code>assets/qr.png</code></div>
+          </div>
+          <p class="qr-caption rise" style="--d:1.2" data-deck="qrCaption"></p>
+        </div>
       </div>
       <aside class="notes">Thank the jury, restate the ask, open for questions.</aside>
     </section>
