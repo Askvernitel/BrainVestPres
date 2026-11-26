@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pitch Deck</title>
+  <link rel="icon" href="assets/logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 1 · LOGO ─────────────────────────────────────────── -->
+    <section class="s-title">
+      <div class="frame center">
+        <div class="glow"></div>
+        <img class="logo pop" data-deck-logo alt="Logo"> <!-- TODO: logo via js/config.js -->
+        <h1 class="rise" style="--d:.5" data-deck="name"></h1>
+        <p class="lead rise" style="--d:.8" data-deck="tagline"></p>
+      </div>
+      <aside class="notes">
+        Open with the name and the promise: scan any room with a phone, then move the furniture
+        around as if it were real.
+      </aside>
+    </section>
+
+    <!-- 2 · PROBLEM ──────────────────────────────────────── -->
+    <section class="s-problem">
+      <div class="frame split">
+        <div class="col-text">
+          <p class="kicker rise">The problem</p>
+          <h2 class="rise" style="--d:.1">More homes.<br><span class="muted">Same guesswork.</span></h2>
+          <div class="stat rise" style="--d:.3">
+            <span class="stat-num" data-count="42267" data-delay="400">0</span>
+            <span class="stat-label">apartments sold in Tbilisi in 2025</span>
+          </div>
+          <p class="lead rise" style="--d:.5">Every buyer still guesses whether their furniture will fit.</p>
+        </div>
+        <div class="col-chart">
+          <svg id="housing-chart" class="chart" viewBox="0 0 1000 560" role="img"
+               aria-label="Apartments sold in Tbilisi per year, 2020 to 2025, rising"></svg>
+          <p class="source rise" style="--d:1.6" data-deck="housingSource"></p>
+        </div>
+      </div>
+      <aside class="notes">
+        The housing market keeps growing: tens of thousands of apartments change hands in Tbilisi
+        every year. 2020 was the pandemic low, 2023 a small dip after a record 2022, and the trend
+        is still clearly up. Each one of those buyers and renters plans furniture from 2D photos
+        and floor plans, guessing at scale and fit.
+      </aside>
+    </section>
+
+    <!-- 3 · SOLUTION ─────────────────────────────────────── -->
+    <section class="s-solution">
+      <div class="frame">
+        <div class="solution-head">
+          <p class="kicker rise">The solution</p>
+          <ol class="steps">
+            <li class="fragment" data-fragment-index="0"><span>01</span>Scan</li>
+            <li class="fragment" data-fragment-index="1"><span>02</span>Separate</li>
+            <li class="fragment" data-fragment-index="2"><span>03</span>Rearrange</li>
+          </ol>
+        </div>
+        <svg class="scene" id="scene-main" aria-label="A room is scanned, furniture is separated, then moved"></svg>
+      </div>
+      <aside class="notes">
+        Click 1 · Scan: walk around the room taking photos; photogrammetry turns them into a 3D model.
+        Click 2 · Separate: RANSAC finds the largest planes (walls, floor, ceiling) and cuts them away.
+        What is left falls apart into separate islands, and each island is one piece of furniture.
+        Click 3 · Rearrange: every piece can now be moved on its own inside the real room.
+      </aside>
+    </section>
+
+    <!-- 4 · DEMO ─────────────────────────────────────────── -->
+    <section class="s-demo">
+      <div class="frame center">
+        <div class="demo-wrap pop">
+          <video id="demo-video" muted loop playsinline preload="auto"></video> <!-- TODO: assets/demo.mp4 -->
+          <div class="demo-placeholder">
+            <svg viewBox="0 0 48 48" width="96" height="96"><circle cx="24" cy="24" r="21" /><path d="M20 16 L33 24 L20 32 Z" /></svg>
+            <p>Demo video goes here</p>
+            <code>assets/demo.mp4</code>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">Live demo or recording: scan → separated furniture → drag pieces around.</aside>
+    </section>
+
+    <!-- 5 · BUSINESS MODEL ──────────────────────────────── -->
+    <section class="s-business">
+      <div class="frame">
+        <p class="kicker rise">Business model</p>
+        <h2 class="rise" style="--d:.1">Free to try. <span class="muted">Paid to scale.</span></h2>
+        <div class="tiers">
+          <div class="tier rise" style="--d:.3">
+            <h3>Free</h3>
+            <p>Scan and rearrange your own home.</p>
+          </div>
+          <div class="tier rise" style="--d:.45">
+            <h3>Pro</h3>
+            <p>Unlimited rooms. Share and export.</p>
+          </div>
+          <div class="tier tier-hl rise" style="--d:.6">
+            <h3>Business</h3>
+            <p>Interactive listings for agencies, developers and furniture stores.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        Freemium for individuals, a Pro subscription for heavy users, and B2B licences
+        (per listing or per seat) for real-estate agencies, developers and furniture retailers.
+      </aside>
+    </section>
+
+    <!-- 6 · GRANT ─────────────────────────────────────────── -->
+    <section class="s-grant">
+      <div class="frame split">
+        <div class="col-text">
+          <p class="kicker rise">The grant</p>
+          <h2 class="rise" style="--d:.1">Where every<br>lari goes.</h2>
+          <ul class="legend" id="grant-legend"></ul>
+        </div>
+        <div class="col-chart center">
+          <svg id="grant-donut" class="donut" viewBox="0 0 200 200" role="img" aria-label="Grant allocation"></svg>
+        </div>
+      </div>
+      <aside class="notes">
+        Most of the grant builds the product: reconstruction quality, object separation, speed.
+        Then compute for processing scans, first partnerships with agencies and stores, and operations.
+      </aside>
+    </section>
+
+    <!-- 7 · WHO NEEDS THIS ──────────────────────────────── -->
+    <section class="s-who">
+      <div class="frame">
+        <p class="kicker rise">Who needs this</p>
+        <h2 class="rise" style="--d:.1">Anyone with a room<br><span class="muted">and a decision to make.</span></h2>
+        <div class="who-grid">
+          <div class="who pop" style="--d:.3">
+            <svg viewBox="0 0 48 48"><path class="draw" pathLength="1" d="M7 23 L24 9 L41 23"/><path class="draw" pathLength="1" d="M11 20 V40 H37 V20"/><path class="draw" pathLength="1" d="M20 40 V29 H28 V40"/></svg>
+            <span>Buyers &amp; renters</span>
+          </div>
+          <div class="who pop" style="--d:.45">
+            <svg viewBox="0 0 48 48"><path class="draw" pathLength="1" d="M12 43 V6"/><path class="draw" pathLength="1" d="M12 10 H40 V27 H12"/><path class="draw" pathLength="1" d="M19 18.5 H33"/></svg>
+            <span>Real-estate agents</span>
+          </div>
+          <div class="who pop" style="--d:.6">
+            <svg viewBox="0 0 48 48"><path class="draw" pathLength="1" d="M8 41 V8 L41 41 Z"/><path class="draw" pathLength="1" d="M14 35 V22 L27 35 Z"/><path class="draw" pathLength="1" d="M8 16 H12 M8 24 H12 M8 32 H12"/></svg>
+            <span>Interior designers</span>
+          </div>
+          <div class="who pop" style="--d:.75">
+            <svg viewBox="0 0 48 48"><path class="draw" pathLength="1" d="M12 25 V15 H36 V25"/><path class="draw" pathLength="1" d="M6 23 H12 V30 H36 V23 H42 V36 H6 Z"/><path class="draw" pathLength="1" d="M10 36 V41 M38 36 V41"/></svg>
+            <span>Furniture retailers</span>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        Buyers and renters planning a move. Agents who want listings people can play with.
+        Designers who need the client's real room. Stores that want shoppers to try a sofa at home first.
+      </aside>
+    </section>
+
+    <!-- 8 · WHY DIFFERENT ───────────────────────────────── -->
+    <section class="s-diff">
+      <div class="frame">
+        <p class="kicker rise">Why we're different</p>
+        <ul class="claims">
+          <li class="rise" style="--d:.2">
+            <svg viewBox="0 0 48 48"><circle class="draw" pathLength="1" cx="24" cy="24" r="20"/><path class="draw tick" pathLength="1" d="M15 24.5 L21.5 31 L34 18"/></svg>
+            <div><strong>Just a phone camera.</strong><span>No scanners, no special hardware.</span></div>
+          </li>
+          <li class="rise" style="--d:.5">
+            <svg viewBox="0 0 48 48"><circle class="draw" pathLength="1" cx="24" cy="24" r="20"/><path class="draw tick" pathLength="1" d="M15 24.5 L21.5 31 L34 18"/></svg>
+            <div><strong>Every piece moves.</strong><span>Not one frozen 3D model.</span></div>
+          </li>
+          <li class="rise" style="--d:.8">
+            <svg viewBox="0 0 48 48"><circle class="draw" pathLength="1" cx="24" cy="24" r="20"/><path class="draw tick" pathLength="1" d="M15 24.5 L21.5 31 L34 18"/></svg>
+            <div><strong>Your real room, to scale.</strong><span>Know it fits before you lift it.</span></div>
+          </li>
+        </ul>
+      </div>
+      <aside class="notes">
+        Other tools give you either an empty floor plan or a single fused scan you cannot edit.
+        We automatically separate structure from furniture, so the scan becomes something you can rearrange.
+      </aside>
+    </section>
+
+    <!-- 9 · TEAM ──────────────────────────────────────────── -->
+    <section class="s-team">
+      <div class="frame">
+        <p class="kicker rise">Team</p>
+        <h2 class="rise" style="--d:.1">The people building it.</h2>
+        <div class="team" id="team"></div> <!-- TODO: team via js/config.js -->
+      </div>
+      <aside class="notes">One sentence per person: what they own and why they are the right person.</aside>
+    </section>
+
+    <!-- 10 · CLOSE ────────────────────────────────────────── -->
+    <section class="s-close">
+      <svg class="scene scene-bg" id="scene-close" aria-hidden="true"></svg>
+      <div class="frame center">
+        <img class="logo logo-sm pop" data-deck-logo alt="Logo">
+        <h1 class="rise" style="--d:.2">Thank you.</h1>
+        <p class="lead rise" style="--d:.5" data-deck="tagline"></p>
+        <p class="contact rise" style="--d:.8" data-deck="contact"></p>
+      </div>
+      <aside class="notes">Thank the jury, restate the ask, open for questions.</aside>
+    </section>
+
+  </div>
+</div>
+
+<script src="vendor/reveal/reveal.js"></script>
+<script src="vendor/reveal/plugin/notes.js"></script>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

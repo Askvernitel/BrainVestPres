@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Placeholder logo: replace with your own file -->
+  <g fill="none" stroke-linejoin="round" stroke-width="5">
+    <path d="M60 12 L104 37 V83 L60 108 L16 83 V37 Z" stroke="#5eead4" opacity=".55"/>
+    <path d="M16 37 L60 62 L104 37 M60 62 V108" stroke="#5eead4" opacity=".55"/>
+  </g>
+  <g stroke="#0a0f1e" stroke-width="2" stroke-linejoin="round">
+    <path d="M60 30 L82 42 L60 54 L38 42 Z" fill="#ffd38a"/>
+    <path d="M38 42 L60 54 V74 L38 62 Z" fill="#c98422"/>
+    <path d="M82 42 L60 54 V74 L82 62 Z" fill="#f0a73e"/>
+  </g>
+</svg>
