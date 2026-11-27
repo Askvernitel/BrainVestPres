@@ -2,7 +2,7 @@
 //  Everything you need to edit lives in this file.
 // ─────────────────────────────────────────────────────────────
 window.DECK = {
-  name: "Product Name",                       // TODO: your product name
+  name: "Avegenie",
   tagline: "Scan your room. Move anything.",
   logo: "assets/logo.svg",                     // TODO: replace with your logo file
   contact: "hello@yourdomain.ge",              // TODO: email / website
