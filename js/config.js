@@ -21,7 +21,7 @@ window.DECK = {
   // Team. `photo` is a square crop in assets/team; initials are used if it's empty.
   team: [
     { name: "Nikoloz Ejibadze", role: "Mechanical engineer", photo: "assets/team/nikoloz.jpg" },
-    { name: "Daniel Kolotashvili", role: "Embedded developer", photo: "assets/team/daniel.jpg" },
+    { name: "Daniel Kolotashvili", role: "AI/ML Engineer", photo: "assets/team/daniel.jpg" },
     { name: "Irakli Gudiashvili", role: "Full stack developer", photo: "assets/team/irakli.jpg" },
   ],
 
