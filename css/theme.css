@@ -247,7 +247,7 @@
 .plan { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-start; }
 .plan-vis { height: 170px; display: flex; align-items: center; }
 .plan h3 { margin-top: 30px; }
-.plan p { font-size: 32px; color: var(--muted); margin-top: 12px; }
+.plan p { font-size: 32px; color: var(--muted); margin-top: 12px; white-space: pre-line; line-height: 1.3; }
 .price { font-size: 150px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
 .price small { font-size: 34px; font-weight: 500; letter-spacing: 0; color: var(--muted); margin-left: 12px; }
 .plan-biz .price > span, .plan-biz h3 { color: var(--amber); }

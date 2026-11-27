@@ -9,6 +9,7 @@ window.DECK = {
   // Business model slide prices (include the currency, e.g. "₾29").
   pricePro: "$10",                              // Professional plan
   priceBusiness: "$100",                        // Business plan
+  businessNote: "20 models included\nthen $10 per extra model",
   pricePeriod: "/ month",
 
   // Demo slide: drop a screen recording at this path (mp4).

@@ -34,7 +34,7 @@ Loose files in the root (`*.jpg`, `*.png`, `*.webp`, `overfurn*.svg`) are the us
 3. Solution: "Scan → Separate → Add & Rearrange". Scan starts on its own 250 ms after the slide opens (`SCAN_DELAY`); clicks reveal Separate, Rearrange, then store items (Embawood · Saba · Pinterest) dropping in. Keep this slide.
 4. Market: three line charts — apartments sold (Tbilisi), housing permitted (Tbilisi, permits area), furniture & lighting sales (Georgia, US$)
 5. Who needs this: hub diagram, logo in the centre, four audiences around it
-6. Business model: free trial (6 scans) → Professional $10/mo → Business $100/mo
+6. Business model: free trial (6 scans) → Professional $10/mo → Business $100/mo (20 models included, then $10 per model)
 7. Competition: no title; rows in this order: AI agents (ChatGPT, Claude), IKEA (Kreativ), Scaniverse, Human 3D modeler, then Avegenie; segmented bars over 3 capabilities (scans the room / moves your furniture / store integrations) → coverage %
 8. Grant: donut of fund allocation
 9. Team: three portraits on a line (no cards)
@@ -57,6 +57,7 @@ Loose files in the root (`*.jpg`, `*.png`, `*.webp`, `overfurn*.svg`) are the us
 
 - Preview: `python3 -m http.server 8000` in the repo, or open `index.html` directly.
 - Browsers cache aggressively (Firefox + Pages `max-age=600`): tell the user to hard-refresh (Ctrl+Shift+R) after changes.
+- `index.html` loads `css/theme.css`, `js/config.js`, `js/main.js` with `?v=YYYYMMDD-N`. **Bump it on every push that changes any of them**, otherwise browsers can mix a new `index.html` with an old cached `main.js` and the deck crashes to a white screen.
 - Verify visually: render slides headless (Playwright/Chromium at 1920×1080, `index.html#/N`, wait ~3–4 s for animations) and look at the screenshot before claiming a layout works.
 - **Push only when the user says so.** Commit to `main` (that is what Pages serves), then confirm the Pages deploy finished (`gh api repos/Askvernitel/BrainVestPres/actions/runs`).
 
