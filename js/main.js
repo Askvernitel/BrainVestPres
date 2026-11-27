@@ -235,7 +235,7 @@
     return svg;
   }
 
-  // ── "Add from any website": a generic inspiration-board window whose items
+  // ── Store integrations (Embawood, Saba, Pinterest…): a browser window whose items
   //    are dragged into the room and drop in as 3D objects (step 4).
   const ADDED = [
     {
@@ -297,7 +297,7 @@
     url.textContent = "inspiration board";
 
     const label = el("text", { class: "browser-label", x: bx + bw / 2, y: by - 18, "text-anchor": "middle" }, win);
-    label.textContent = "DRAG IN FROM ANY WEBSITE";
+    label.textContent = "EMBAWOOD · SABA · PINTEREST";
 
     const tiles = { sofa: [0, 0], lamp: [1, 0], frame: [0, 1], plant: [1, 1] };
     const bg = { sofa: "#f6e7de", lamp: "#fbf1d6", frame: "#e9e8f8", plant: "#e2f2e5" };

@@ -331,15 +331,6 @@
 .hub-tl, .hub-bl { left: 150px; }
 .hub-tr, .hub-br { left: 770px; }
 
-/* ───────────────────────── 8 · Different ───────────────────────── */
-.claims { list-style: none; padding: 0; margin: 0; display: grid; gap: 64px; }
-.claims li { display: flex; align-items: center; gap: 48px; }
-.claims svg { flex: 0 0 120px; width: 120px; height: 120px; }
-.claims svg circle { fill: none; stroke: #ffffff26; stroke-width: 2; }
-.claims svg path { fill: none; stroke: var(--teal); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
-.claims strong { display: block; font-size: 80px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
-.claims div span { display: block; font-size: 36px; color: var(--muted); margin-top: 10px; }
-
 /* ───────────────────────── Competition ───────────────────────── */
 .s-compete h2 { font-size: 80px; margin-bottom: 56px; }
 .s-compete h2 { font-size: 76px; margin-bottom: 44px; }
@@ -349,6 +340,7 @@
 .cmp-row { display: grid; grid-template-columns: 380px 1fr 1fr 1fr 190px; align-items: center; column-gap: 10px; }
 .cmp-head span { font-size: 22px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); text-align: center; }
 .cmp-head span:last-child { text-align: right; }
+.cmp-head small { display: block; font-size: 18px; font-weight: 400; letter-spacing: 0; text-transform: none; margin-top: 4px; opacity: 0.85; }
 .cmp-name { font-size: 34px; font-weight: 600; line-height: 1.1; }
 .cmp-name small { display: block; font-size: 22px; font-weight: 400; color: var(--muted); margin-top: 4px; }
 .cmp-row i { position: relative; display: block; height: 34px; border-radius: 8px; background: #ffffff0d; overflow: hidden; }
