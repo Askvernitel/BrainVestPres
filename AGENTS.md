@@ -19,9 +19,9 @@ Live: https://askvernitel.github.io/BrainVestPres/ (GitHub Pages, deployed from 
 |---|---|
 | `index.html` | All slides, one `<section>` each, marked `<!-- N · NAME ─── -->`. Speaker notes in `<aside class="notes">`. |
 | `js/config.js` | **All editable content**: name, tagline, logo, prices, demo video, team, chart data + sources, grant split. Read via `window.DECK` (`D` in main.js) and `data-deck="key"` attributes. |
-| `js/main.js` | Builds the dynamic parts: team portraits, market charts, grant donut, isometric rooms (problem bed tour, close background), count-ups, demo video, Reveal init and per-slide enter hooks. |
+| `js/main.js` | Builds the dynamic parts: team portraits, market charts, grant donut, isometric rooms (problem bed tour, solution steps, close background), count-ups, demo videos (every `<video data-demo>` restarts when its slide opens), Reveal init and per-slide enter hooks. |
 | `css/theme.css` | Design tokens at the top, then one block per slide. Motion primitives: `.rise`, `.pop`, `.flip`, `.draw` with `--d` (delay in s), replayed when a slide becomes `.present`. |
-| `assets/` | `logo.svg` (transparent), `logo-bg.svg` (dark square, favicon), `demo.mp4` + `demo.jpg` poster, `team/*.jpg` (600×600 face crops). |
+| `assets/` | `logo.svg` (transparent), `logo-bg.svg` (dark square, favicon), `demo.mp4` + `demo.jpg` poster (played on the close slide), `team/*.jpg` (600×600 face crops). |
 | `tools/demo-video/scene.html` | Source of `assets/demo.mp4`. SVG animation driven by `window.renderAt(t)`; open in a browser to preview. |
 | `vendor/reveal/` | Vendored reveal.js. Don't edit. |
 
@@ -31,14 +31,14 @@ Loose files in the root (`*.jpg`, `*.png`, `*.webp`, `overfurn*.svg`) are the us
 
 1. Logo (name only, no subtitle)
 2. Problem: "Where would you fit this bed?" — bed tours the four corners of an isometric room
-3. Demo: plays `assets/demo.mp4` (muted, loop)
+3. Solution: "Scan → Separate → Add & Rearrange". Scan starts on its own 250 ms after the slide opens (`SCAN_DELAY`); clicks reveal Separate, Rearrange, then store items (Embawood · Saba · Pinterest) dropping in. Keep this slide.
 4. Market: three line charts — apartments sold (Tbilisi), housing permitted (Tbilisi, permits area), furniture & lighting sales (Georgia, US$)
 5. Who needs this: hub diagram, logo in the centre, four audiences around it
 6. Business model: free trial (6 scans) → Professional $10/mo → Business $100/mo
-7. Competition: no title; segmented bars per competitor over 3 capabilities (scans the room / moves your furniture / store integrations) → coverage %
+7. Competition: no title; rows in this order: AI agents (ChatGPT, Claude), IKEA (Kreativ), Scaniverse, Human 3D modeler, then Avegenie; segmented bars over 3 capabilities (scans the room / moves your furniture / store integrations) → coverage %
 8. Grant: donut of fund allocation
 9. Team: three portraits on a line (no cards)
-10. Close: logo, "Thank you.", tagline (no QR, no email)
+10. Close: logo, "Thank you.", tagline on the left, the demo video looping on the right (no QR, no email). There is no separate demo slide: the video lives only here.
 
 ## Style rules (the user has been explicit about these)
 
@@ -51,7 +51,7 @@ Loose files in the root (`*.jpg`, `*.png`, `*.webp`, `overfurn*.svg`) are the us
 ## Data and honesty
 
 - Market figures come from Galt & Taggart reports (NAPR, TAS, Geostat, SARAS), TBC Capital, Colliers Georgia. Sources are noted in `js/config.js` and shown on the slide (`marketSource`). Don't add numbers without a source; there is no per-unit furniture sales figure for Georgia.
-- Competition scores are judgement calls derived from the three capabilities (half points: AI chatbots "move" = can reimagine a photo, not to scale; Retail AR "integrations" = own catalogue only; human modeler "scan" = measures by hand). Explain changes, don't inflate.
+- Competition scores are judgement calls derived from the three capabilities (half points: AI agents "move" = can reimagine a photo, not to scale; IKEA "integrations" = own catalogue only; human modeler "scan" = measures by hand). Explain changes, don't inflate.
 
 ## Workflow
 

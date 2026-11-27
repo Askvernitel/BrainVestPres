@@ -48,19 +48,28 @@
       </aside>
     </section>
 
-    <!-- 3 · DEMO ─────────────────────────────────────────── -->
-    <section class="s-demo">
-      <div class="frame center">
-        <div class="demo-wrap pop">
-          <video id="demo-video" muted loop playsinline preload="auto"></video> <!-- assets/demo.mp4, source in tools/demo-video -->
-          <div class="demo-placeholder">
-            <svg viewBox="0 0 48 48" width="96" height="96"><circle cx="24" cy="24" r="21" /><path d="M20 16 L33 24 L20 32 Z" /></svg>
-            <p>Demo video goes here</p>
-            <code>assets/demo.mp4</code>
-          </div>
+    <!-- 3 · SOLUTION ─────────────────────────────────────── -->
+    <section class="s-solution">
+      <div class="frame">
+        <div class="solution-head">
+          <p class="kicker rise">The solution</p>
+          <ol class="steps">
+            <li class="fragment" data-fragment-index="0"><span>01</span>Scan</li>
+            <li class="fragment" data-fragment-index="1"><span>02</span>Separate</li>
+            <li class="fragment" data-fragment-index="2"><span>03</span>Add &amp;<br>Rearrange</li>
+          </ol>
+          <span class="fragment step-trigger" data-fragment-index="3" aria-hidden="true"></span>
         </div>
+        <svg class="scene" id="scene-main" aria-label="A room is scanned, furniture is separated, then moved"></svg>
       </div>
-      <aside class="notes">Narrate over the video: you see a sofa you like and wonder if it fits. Open Avegenie, scan the room, the sofa drops in, drag it against the wall, it fits. Tap buy. 26 seconds, loops.</aside>
+      <aside class="notes">
+        Click 1 · Scan: walk around the room taking photos; photogrammetry turns them into a 3D model.
+        Click 2 · Separate: RANSAC finds the largest planes (walls, floor, ceiling) and cuts them away.
+        What is left falls apart into separate islands, and each island is one piece of furniture.
+        Click 3 · Rearrange: every piece can now be moved on its own inside the real room.
+        Click 4 · Add: we integrate with Embawood, Saba, Pinterest and more; pick an item and it
+        drops into your room as a 3D object you can move like everything else.
+      </aside>
     </section>
 
     <!-- 4 · MARKET ─────────────────────────────────────── -->
@@ -179,13 +188,13 @@
             <span></span><span>Scans the room</span><span>Moves your furniture</span><span>Store integrations<small>Embawood, Saba, Pinterest…</small></span><span>Coverage</span>
           </div>
           <div class="cmp-row rise" style="--d:0.40">
-            <div class="cmp-name">AI chatbots<small>e.g. ChatGPT, Claude</small></div><i style="--f:0; --c:0"></i><i style="--f:0.5; --c:1"></i><i style="--f:0; --c:2"></i><b data-count="17" data-suffix="%" data-delay="900">17%</b>
+            <div class="cmp-name">AI agents<small>ChatGPT, Claude</small></div><i style="--f:0; --c:0"></i><i style="--f:0.5; --c:1"></i><i style="--f:0; --c:2"></i><b data-count="17" data-suffix="%" data-delay="900">17%</b>
           </div>
           <div class="cmp-row rise" style="--d:0.55">
-            <div class="cmp-name">Retail AR<small>e.g. IKEA Kreativ</small></div><i style="--f:1; --c:0"></i><i style="--f:0; --c:1"></i><i style="--f:0.5; --c:2"></i><b data-count="50" data-suffix="%" data-delay="1050">50%</b>
+            <div class="cmp-name">IKEA<small>IKEA Kreativ · retail AR</small></div><i style="--f:1; --c:0"></i><i style="--f:0; --c:1"></i><i style="--f:0.5; --c:2"></i><b data-count="50" data-suffix="%" data-delay="1050">50%</b>
           </div>
           <div class="cmp-row rise" style="--d:0.70">
-            <div class="cmp-name">3D scanners<small>e.g. Polycam</small></div><i style="--f:1; --c:0"></i><i style="--f:0; --c:1"></i><i style="--f:0; --c:2"></i><b data-count="33" data-suffix="%" data-delay="1200">33%</b>
+            <div class="cmp-name">Scaniverse<small>3D scanner app</small></div><i style="--f:1; --c:0"></i><i style="--f:0; --c:1"></i><i style="--f:0; --c:2"></i><b data-count="33" data-suffix="%" data-delay="1200">33%</b>
           </div>
           <div class="cmp-row rise" style="--d:0.85">
             <div class="cmp-name">Human 3D modeler<small>Blender freelancer · days per room</small></div><i style="--f:0.5; --c:0"></i><i style="--f:1; --c:1"></i><i style="--f:0; --c:2"></i><b data-count="50" data-suffix="%" data-delay="1350">50%</b>
@@ -198,8 +207,8 @@
       <aside class="notes">
         Each bar is split into the three things that matter: scanning your real room, moving your
         own furniture, and working with the stores people already shop at: Embawood, Saba, Pinterest.
-        ChatGPT or Claude can reimagine a photo, but not your real room to scale. IKEA Kreativ scans
-        the room but only offers its own catalogue. Scanners capture one frozen model. A human 3D modeler
+        AI agents like ChatGPT or Claude can reimagine a photo, but not your real room to scale. IKEA Kreativ scans
+        the room but only offers its own catalogue. Scaniverse captures one frozen 3D model. A human 3D modeler
         can do it, but it takes days and costs money for every room. We are the only one that covers all three.
       </aside>
     </section>
@@ -235,12 +244,17 @@
     <!-- 10 · CLOSE ────────────────────────────────────────── -->
     <section class="s-close">
       <svg class="scene scene-bg" id="scene-close" aria-hidden="true"></svg>
-      <div class="frame center close-text">
-        <img class="logo logo-sm pop" data-deck-logo alt="Logo">
-        <h1 class="rise" style="--d:.2">Thank you.</h1>
-        <p class="lead rise" style="--d:.5" data-deck="tagline"></p>
+      <div class="frame close-split">
+        <div class="close-text">
+          <img class="logo logo-sm pop" data-deck-logo alt="Logo">
+          <h1 class="rise" style="--d:.2">Thank you.</h1>
+          <p class="lead rise" style="--d:.5" data-deck="tagline"></p>
+        </div>
+        <div class="demo-wrap close-video pop" style="--d:.6">
+          <video data-demo muted loop playsinline preload="auto"></video>
+        </div>
       </div>
-      <aside class="notes">Thank the jury, restate the ask, open for questions.</aside>
+      <aside class="notes">Thank the jury, restate the ask, open for questions. The demo video loops on the right: you see a sofa, scan the room, drop it in, it fits, you buy.</aside>
     </section>
 
   </div>
