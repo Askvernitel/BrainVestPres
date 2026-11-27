@@ -8,8 +8,8 @@ window.DECK = {
   contact: "hello@yourdomain.ge",              // TODO: email / website
 
   // Business model slide prices (include the currency, e.g. "₾29").
-  pricePro: "Y",                                // TODO: Professional price
-  priceBusiness: "X",                           // TODO: Business price
+  pricePro: "$10",                              // Professional plan
+  priceBusiness: "$100",                        // Business plan
   pricePeriod: "/ month",
 
   // Closing slide QR code. Drop your generated image at this path (png/svg).
