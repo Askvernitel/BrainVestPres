@@ -2,7 +2,7 @@
 //  Everything you need to edit lives in this file.
 // ─────────────────────────────────────────────────────────────
 window.DECK = {
-  name: "Overfurn",
+  name: "Avegenie",
   tagline: "Scan your room. Move anything.",
   logo: "assets/logo.svg",                     // transparent; assets/logo-bg.svg has the dark square (used as favicon)
   contact: "hello@yourdomain.ge",              // TODO: email / website

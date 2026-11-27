@@ -336,7 +336,7 @@
 .s-compete h2 { font-size: 76px; margin-bottom: 44px; }
 
 /* each bar = the 3 key capabilities; a filled segment means the product has it */
-.cmp { display: grid; gap: 18px; }
+.cmp { display: grid; gap: 34px; }
 .cmp-row { display: grid; grid-template-columns: 380px 1fr 1fr 1fr 190px; align-items: center; column-gap: 10px; }
 .cmp-head span { font-size: 22px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); text-align: center; }
 .cmp-head span:last-child { text-align: right; }
