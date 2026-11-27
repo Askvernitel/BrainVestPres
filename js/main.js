@@ -34,43 +34,47 @@
     team.appendChild(card);
   });
 
-  // ── Housing chart ─────────────────────────────────────────
-  (function buildChart() {
-    const svg = document.getElementById("housing-chart");
-    const data = D.housing;
-    const W = 1000, H = 560, padL = 40, padR = 60, padT = 70, padB = 70;
-    const min = 20000, max = 46000;
+  // ── Market charts: one small line chart per [data-series] svg ──
+  const FMT = {
+    k: (v, d) => (d.approx ? "≈" : "") + (v / 1000).toFixed(1) + "k",
+    m2: (v, d) => (v / 1000).toFixed(2) + "M",
+    usd: (v, d) => (d.approx ? "≈" : "") + "$" + v + "M",
+  };
+  document.querySelectorAll("svg[data-series]").forEach((svg, n) => {
+    const data = D[svg.dataset.series], fmt = FMT[svg.dataset.fmt];
+    const base = parseFloat(svg.style.getPropertyValue("--d")) || 0;
+    const W = 600, H = 340, padL = 30, padR = 40, padT = 56, padB = 50;
+    const vals = data.map((d) => d.value);
+    const lo = Math.min(...vals), hi = Math.max(...vals), span = hi - lo || 1;
+    const min = lo - span * 0.35, max = hi + span * 0.1;
     const x = (i) => padL + (i * (W - padL - padR)) / (data.length - 1);
     const y = (v) => padT + (1 - (v - min) / (max - min)) * (H - padT - padB);
 
-    const defs = el("defs", {}, svg);
-    const g = el("linearGradient", { id: "areaGrad", x1: 0, y1: 0, x2: 0, y2: 1 }, defs);
-    el("stop", { offset: "0%", "stop-color": "#FFB547", "stop-opacity": 0.35 }, g);
+    const gid = "areaGrad" + n;
+    const g = el("linearGradient", { id: gid, x1: 0, y1: 0, x2: 0, y2: 1 }, el("defs", {}, svg));
+    el("stop", { offset: "0%", "stop-color": "#FFB547", "stop-opacity": 0.3 }, g);
     el("stop", { offset: "100%", "stop-color": "#FFB547", "stop-opacity": 0 }, g);
-
-    // baseline gridlines
-    [25000, 35000, 45000].forEach((v) =>
-      el("line", { class: "gridline", x1: padL, x2: W - padR, y1: y(v), y2: y(v) }, svg)
-    );
+    el("line", { class: "gridline", x1: padL, x2: W - padR, y1: H - padB, y2: H - padB }, svg);
 
     const pts = data.map((d, i) => [x(i), y(d.value)]);
     const line = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
-    const area = line + ` L${x(data.length - 1)} ${H - padB} L${x(0)} ${H - padB} Z`;
-    el("path", { class: "chart-area", d: area }, svg);
+    el("path", { class: "chart-area", d: line + ` L${x(data.length - 1)} ${H - padB} L${x(0)} ${H - padB} Z`, fill: `url(#${gid})` }, svg);
     el("path", { class: "chart-line", d: line, pathLength: 1 }, svg);
 
     data.forEach((d, i) => {
-      const delay = (0.5 + (i / (data.length - 1)) * 1.4).toFixed(2);
-      const last = i === data.length - 1;
-      const grp = el("g", { class: "chart-pt" + (last ? " last" : ""), style: `--d:${delay}` }, svg);
-      if (last) el("circle", { class: "halo", cx: pts[i][0], cy: pts[i][1], r: 22 }, grp);
-      el("circle", { cx: pts[i][0], cy: pts[i][1], r: last ? 10 : 7 }, grp);
-      const t = el("text", { class: "chart-val", x: pts[i][0], y: pts[i][1] - 26, "text-anchor": "middle" }, grp);
-      t.textContent = (d.approx ? "≈" : "") + (d.value / 1000).toFixed(1) + "k";
-      const yr = el("text", { class: "chart-year", x: pts[i][0], y: H - padB + 46, "text-anchor": "middle" }, svg);
-      yr.textContent = d.year;
+      const first = i === 0, last = i === data.length - 1;
+      const grp = el("g", { class: "chart-pt" + (last ? " last" : ""), style: `--pd:${(base + 0.5 + (i / (data.length - 1)) * 1.3).toFixed(2)}` }, svg);
+      el("circle", { cx: pts[i][0], cy: pts[i][1], r: last ? 8 : 5.5 }, grp);
+      if (first || last) {
+        // first value sits under its point, last value at the top-right corner: neither touches the line
+        const ty = first ? pts[i][1] + 40 : padT - 22;
+        const t = el("text", { class: "chart-val", x: pts[i][0] + (first ? -4 : 4), y: ty, "text-anchor": first ? "start" : "end" }, grp);
+        t.textContent = fmt(d.value, d);
+      }
+      const yr = el("text", { class: "chart-year", x: pts[i][0], y: H - padB + 34, "text-anchor": "middle" }, svg);
+      yr.textContent = "'" + String(d.year).slice(2);
     });
-  })();
+  });
 
   // ── Grant donut + legend ──────────────────────────────────
   (function buildDonut() {
@@ -171,11 +175,11 @@
     };
   }
 
-  function buildScene(svg, opts = {}) {
+  // empty room: walls, floor grid, window; also sets the viewBox
+  function buildRoom(svg, extraR = 0) {
     const [minX] = P(0, 8), [maxX] = P(10, 0), [, minY] = P(0, 0, 5), [, maxY] = P(10, 8);
-    const pad = 40, extraR = opts.add ? 230 : 0;
+    const pad = 40;
     svg.setAttribute("viewBox", `${minX - pad} ${minY - pad - 30} ${maxX - minX + pad * 2 + extraR} ${maxY - minY + pad * 2 + 30}`);
-
     const structure = el("g", { class: "structure surf" }, svg);
     el("polygon", { class: "wall", points: poly([[0, 0, 0], [10, 0, 0], [10, 0, 5], [0, 0, 5]]) }, structure);
     el("polygon", { class: "wall", points: poly([[0, 0, 0], [0, 8, 0], [0, 8, 5], [0, 0, 5]]) }, structure);
@@ -184,6 +188,11 @@
     for (let j = 1; j < 8; j++) seg(structure, [0, j, 0], [10, j, 0], "grid");
     // window on back wall
     el("polygon", { class: "window", points: poly([[6.2, 0, 2], [8.8, 0, 2], [8.8, 0, 4.1], [6.2, 0, 4.1]]) }, structure);
+    return { maxX, minY };
+  }
+
+  function buildScene(svg, opts = {}) {
+    const { maxX, minY } = buildRoom(svg, opts.add ? 230 : 0);
 
     FURNITURE.forEach((f, i) => {
       const [dx, dy] = f.move;
@@ -322,6 +331,40 @@
     });
   }
 
+  // ── Problem: one bed tours the four corners of an empty room ──
+  (function buildProblem() {
+    const svg = document.getElementById("scene-problem");
+    if (!svg) return;
+    buildRoom(svg);
+    svg.classList.add("s1");
+    const w = 2.6, d = 3.4, m = 0.25;
+    const corners = [[m, m], [10 - w - m, m], [10 - w - m, 8 - d - m], [m, 8 - d - m]];
+    const rect = (x, y, pad = 0) => poly([[x - pad, y - pad, 0], [x + w + pad, y - pad, 0], [x + w + pad, y + d + pad, 0], [x - pad, y + d + pad, 0]]);
+
+    corners.forEach(([x, y], i) => {
+      el("polygon", { class: "spot", points: rect(x, y, 0.08) }, svg);
+      const [qx, qy] = P(x + w / 2, y + d / 2, 0.4);
+      const q = el("text", { class: "spot-q", x: qx.toFixed(1), y: qy.toFixed(1), style: `--q:${(i * 0.3).toFixed(1)}s` }, svg);
+      q.textContent = "?";
+    });
+
+    const [x0, y0] = corners[0];
+    const vars = ["b", "c", "d"].map((k, i) => {
+      const [x, y] = corners[i + 1], dx = x - x0, dy = y - y0;
+      return `--${k}x:${((dx - dy) * C).toFixed(1)}px;--${k}y:${((dx + dy) * S).toFixed(1)}px`;
+    }).join(";");
+    const tour = el("g", { class: "bed-tour", style: vars }, svg);
+    el("polygon", { class: "bed-shadow", points: rect(x0, y0, 0.05) }, tour);
+    const bed = el("g", { class: "bed bed-hop" }, tour);
+    const x = x0, y = y0;
+    box(bed, x, y, 0, w, 0.28, 2.0, "wood");                       // headboard against the back
+    box(bed, x, y + 0.28, 0, w, d - 0.28, 0.55, "wood");           // frame
+    box(bed, x + 0.08, y + 0.32, 0.55, w - 0.16, d - 0.4, 0.42, "mat"); // mattress
+    box(bed, x + 0.25, y + 0.45, 0.97, 0.95, 0.6, 0.24, "pil");    // pillows
+    box(bed, x + w - 1.2, y + 0.45, 0.97, 0.95, 0.6, 0.24, "pil");
+    box(bed, x + 0.04, y + 1.35, 0.6, w - 0.08, d - 1.35, 0.42, "blk"); // blanket
+  })();
+
   const sceneMain = buildScene(document.getElementById("scene-main"), { add: true });
   const sceneClose = buildScene(document.getElementById("scene-close"));
   sceneClose.classList.add("s1", "s2");
@@ -333,9 +376,10 @@
   // ── Count-up numbers ──────────────────────────────────────
   function countUp(slide) {
     slide.querySelectorAll("[data-count]").forEach((n) => {
-      const target = +n.dataset.count, suffix = n.dataset.suffix || "";
+      const target = +n.dataset.count, suffix = n.dataset.suffix || "", prefix = n.dataset.prefix || "";
+      const dec = +(n.dataset.decimals || 0);
       const delay = +(n.dataset.delay || 0), dur = 1600;
-      const fmt = (v) => Math.round(v).toLocaleString("en-US") + suffix;
+      const fmt = (v) => prefix + v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suffix;
       if (reduceMotion) { n.textContent = fmt(target); return; }
       n.textContent = fmt(0);
       const t0 = performance.now() + delay;

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pitch Deck</title>
-  <link rel="icon" href="assets/logo.svg">
+  <link rel="icon" href="assets/logo-bg.svg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,31 +33,54 @@
 
     <!-- 2 · PROBLEM ──────────────────────────────────────── -->
     <section class="s-problem">
-      <div class="frame split">
-        <div class="col-text">
-          <p class="kicker rise">The problem</p>
-          <h2 class="rise" style="--d:.1">More homes.<br><span class="muted">Same guesswork.</span></h2>
-          <div class="stat rise" style="--d:.3">
-            <span class="stat-num" data-count="42267" data-delay="400">0</span>
-            <span class="stat-label">apartments sold in Tbilisi in 2025</span>
-          </div>
-          <p class="lead rise" style="--d:.5">Every buyer still guesses whether their furniture will fit.</p>
+      <div class="frame">
+        <div class="problem-head">
+          <h2 class="rise">Where would<br>you fit<br>this bed?</h2>
+          <p class="lead rise" style="--d:.3">Today you either model the room in Blender, or lift it and guess.</p>
         </div>
-        <div class="col-chart">
-          <svg id="housing-chart" class="chart" viewBox="0 0 1000 560" role="img"
-               aria-label="Apartments sold in Tbilisi per year, 2020 to 2025, rising"></svg>
-          <p class="source rise" style="--d:1.6" data-deck="housingSource"></p>
-        </div>
+        <svg class="scene rise" style="--d:.2" id="scene-problem" aria-label="A bed is moved from corner to corner of a room, looking for where it fits"></svg>
       </div>
       <aside class="notes">
-        The housing market keeps growing: tens of thousands of apartments change hands in Tbilisi
-        every year. 2020 was the pandemic low, 2023 a small dip after a record 2022, and the trend
-        is still clearly up. Each one of those buyers and renters plans furniture from 2D photos
-        and floor plans, guessing at scale and fit.
+        Tell it as your own problem: I have this bed. Where does it go? Against the window wall?
+        By the door? Today there are two ways to find out. Technical people model the whole room
+        in Blender, which takes hours and real 3D skills. Everyone else lifts it, moves it and hopes.
+        Our way is for everyone else.
       </aside>
     </section>
 
-    <!-- 3 · SOLUTION ─────────────────────────────────────── -->
+    <!-- 3 · MARKET ─────────────────────────────────────── -->
+    <section class="s-market">
+      <div class="frame">
+        <p class="kicker rise">The market</p>
+        <h2 class="rise" style="--d:.1">Every new home <span class="muted">needs its furniture placed.</span></h2>
+        <div class="markets">
+          <div class="market rise" style="--d:.3">
+            <span class="m-num" data-count="42267" data-delay="500">42,267</span>
+            <span class="m-label">apartments sold · Tbilisi, 2025</span>
+            <svg class="chart" data-series="apartments" data-fmt="k" style="--d:.3" viewBox="0 0 600 340" role="img" aria-label="Apartments sold in Tbilisi per year, 2020 to 2025"></svg>
+          </div>
+          <div class="market rise" style="--d:.5">
+            <span class="m-num" data-count="1.81" data-decimals="2" data-suffix="M m²" data-delay="700">1.81M m²</span>
+            <span class="m-label">new housing permitted · Tbilisi, 2024</span>
+            <svg class="chart" data-series="permits" data-fmt="m2" style="--d:.5" viewBox="0 0 600 340" role="img" aria-label="Area of residential construction permits in Tbilisi per year, 2018 to 2024"></svg>
+          </div>
+          <div class="market rise" style="--d:.7">
+            <span class="m-num" data-count="511" data-prefix="$" data-suffix="M" data-delay="900">$511M</span>
+            <span class="m-label">furniture &amp; lighting sold · Georgia, 2024</span>
+            <svg class="chart" data-series="furniture" data-fmt="usd" style="--d:.7" viewBox="0 0 600 340" role="img" aria-label="Furniture and lighting sales in Georgia per year, 2018 to 2024"></svg>
+          </div>
+        </div>
+        <p class="source rise" style="--d:1.6" data-deck="marketSource"></p>
+      </div>
+      <aside class="notes">
+        And it is not only me. Around 42 thousand apartments change hands in Tbilisi every year.
+        New construction keeps coming: about 1.8 million square metres of housing were permitted in 2024.
+        And Georgians spend over half a billion dollars a year on furniture and lighting, up from
+        under 300 million in 2020. Every one of those moves and purchases runs into the same question.
+      </aside>
+    </section>
+
+    <!-- 4 · SOLUTION ─────────────────────────────────────── -->
     <section class="s-solution">
       <div class="frame">
         <div class="solution-head">
@@ -81,7 +104,7 @@
       </aside>
     </section>
 
-    <!-- 4 · DEMO ─────────────────────────────────────────── -->
+    <!-- 5 · DEMO ─────────────────────────────────────────── -->
     <section class="s-demo">
       <div class="frame center">
         <div class="demo-wrap pop">
@@ -96,7 +119,7 @@
       <aside class="notes">Live demo or recording: scan → separated furniture → drag pieces around.</aside>
     </section>
 
-    <!-- 5 · BUSINESS MODEL ──────────────────────────────── -->
+    <!-- 6 · BUSINESS MODEL ──────────────────────────────── -->
     <section class="s-business">
       <div class="frame">
         <p class="kicker rise">Business model</p>
@@ -129,25 +152,38 @@
       </aside>
     </section>
 
-    <!-- 6 · WHO NEEDS THIS ──────────────────────────────── -->
+    <!-- 7 · WHO NEEDS THIS ──────────────────────────────── -->
     <section class="s-who">
-      <div class="frame">
+      <div class="frame split">
+        <div class="col-text">
         <p class="kicker rise">Who needs this</p>
-        <h2 class="rise" style="--d:.1">Anyone with a room<br><span class="muted">and a decision to make.</span></h2>
-        <div class="who-grid">
-          <div class="who pop" style="--d:.3">
+        <h2 class="rise" style="--d:.1">Anyone with<br>a room<br><span class="muted">and a decision<br>to make.</span></h2>
+        </div>
+        <div class="hub">
+          <svg class="hub-lines" viewBox="0 0 920 780" aria-hidden="true">
+            <path class="draw" style="--d:0.60" pathLength="1" d="M369 320 L217 202"/>
+            <path class="draw" style="--d:0.72" pathLength="1" d="M551 320 L703 202"/>
+            <path class="draw" style="--d:0.84" pathLength="1" d="M369 460 L217 578"/>
+            <path class="draw" style="--d:0.96" pathLength="1" d="M551 460 L703 578"/>
+            <circle class="hub-pulse" cx="369" cy="320" r="7" style="--tx:-152px; --ty:-118px; --p:0.00s"/>
+            <circle class="hub-pulse" cx="551" cy="320" r="7" style="--tx:152px; --ty:-118px; --p:0.55s"/>
+            <circle class="hub-pulse" cx="369" cy="460" r="7" style="--tx:-152px; --ty:118px; --p:1.10s"/>
+            <circle class="hub-pulse" cx="551" cy="460" r="7" style="--tx:152px; --ty:118px; --p:1.65s"/>
+          </svg>
+          <div class="hub-core pop" style="--d:.3"><img data-deck-logo alt=""></div>
+          <div class="hub-node hub-tl pop" style="--d:1.10">
             <svg viewBox="0 0 48 48"><path class="draw" pathLength="1" d="M7 23 L24 9 L41 23"/><path class="draw" pathLength="1" d="M11 20 V40 H37 V20"/><path class="draw" pathLength="1" d="M20 40 V29 H28 V40"/></svg>
             <span>Buyers &amp; renters</span>
           </div>
-          <div class="who pop" style="--d:.45">
+          <div class="hub-node hub-tr pop" style="--d:1.25">
             <svg viewBox="0 0 48 48"><path class="draw" pathLength="1" d="M12 43 V6"/><path class="draw" pathLength="1" d="M12 10 H40 V27 H12"/><path class="draw" pathLength="1" d="M19 18.5 H33"/></svg>
             <span>Real-estate agents</span>
           </div>
-          <div class="who pop" style="--d:.6">
+          <div class="hub-node hub-bl pop" style="--d:1.40">
             <svg viewBox="0 0 48 48"><path class="draw" pathLength="1" d="M8 41 V8 L41 41 Z"/><path class="draw" pathLength="1" d="M14 35 V22 L27 35 Z"/><path class="draw" pathLength="1" d="M8 16 H12 M8 24 H12 M8 32 H12"/></svg>
             <span>Interior designers</span>
           </div>
-          <div class="who pop" style="--d:.75">
+          <div class="hub-node hub-br pop" style="--d:1.55">
             <svg viewBox="0 0 48 48"><path class="draw" pathLength="1" d="M12 25 V15 H36 V25"/><path class="draw" pathLength="1" d="M6 23 H12 V30 H36 V23 H42 V36 H6 Z"/><path class="draw" pathLength="1" d="M10 36 V41 M38 36 V41"/></svg>
             <span>Furniture retailers</span>
           </div>
@@ -159,7 +195,7 @@
       </aside>
     </section>
 
-    <!-- 7 · WHY DIFFERENT ───────────────────────────────── -->
+    <!-- 8 · WHY DIFFERENT ───────────────────────────────── -->
     <section class="s-diff">
       <div class="frame">
         <p class="kicker rise">Why we're different</p>
@@ -184,47 +220,41 @@
       </aside>
     </section>
 
-    <!-- 8 · COMPETITION ─────────────────────────────────── -->
+    <!-- 9 · COMPETITION ─────────────────────────────────── -->
     <section class="s-compete">
       <div class="frame">
         <p class="kicker rise">Compared to others</p>
         <h2 class="rise" style="--d:.1">Others show the room.<br><span class="muted">We let you change it.</span></h2>
-        <table class="compare">
-          <thead>
-            <tr class="rise" style="--d:.25">
-              <th></th>
-              <th>Floor-plan apps<small>e.g. Planner 5D</small></th>
-              <th>3D tours<small>e.g. Matterport</small></th>
-              <th>Retail AR<small>e.g. IKEA Kreativ</small></th>
-              <th>3D scanners<small>e.g. Polycam</small></th>
-              <th class="us" data-deck="name"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="rise" style="--d:.45">
-              <td>Scans your real room</td>
-              <td class="no"></td><td class="yes"></td><td class="yes"></td><td class="yes"></td><td class="us yes"></td>
-            </tr>
-            <tr class="rise" style="--d:.65">
-              <td>Your own furniture becomes movable</td>
-              <td class="no"></td><td class="no"></td><td class="no"></td><td class="no"></td><td class="us yes"></td>
-            </tr>
-            <tr class="rise" style="--d:.85">
-              <td>Add items from any website</td>
-              <td class="no"></td><td class="no"></td><td class="part">Own catalogue</td><td class="no"></td><td class="us yes"></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="cmp">
+          <div class="cmp-row cmp-head rise" style="--d:.25">
+            <span></span><span>Scans the room</span><span>Moves your furniture</span><span>Adds from any site</span><span>Coverage</span>
+          </div>
+          <div class="cmp-row rise" style="--d:0.40">
+            <div class="cmp-name">Floor-plan apps<small>e.g. Planner 5D</small></div><i style="--f:0; --c:0"></i><i style="--f:0; --c:1"></i><i style="--f:0; --c:2"></i><b data-count="0" data-suffix="%" data-delay="900">0%</b>
+          </div>
+          <div class="cmp-row rise" style="--d:0.55">
+            <div class="cmp-name">3D tours<small>e.g. Matterport</small></div><i style="--f:1; --c:0"></i><i style="--f:0; --c:1"></i><i style="--f:0; --c:2"></i><b data-count="33" data-suffix="%" data-delay="1050">33%</b>
+          </div>
+          <div class="cmp-row rise" style="--d:0.70">
+            <div class="cmp-name">Retail AR<small>e.g. IKEA Kreativ</small></div><i style="--f:1; --c:0"></i><i style="--f:0; --c:1"></i><i style="--f:0.5; --c:2"></i><b data-count="50" data-suffix="%" data-delay="1200">50%</b>
+          </div>
+          <div class="cmp-row rise" style="--d:0.85">
+            <div class="cmp-name">3D scanners<small>e.g. Polycam</small></div><i style="--f:1; --c:0"></i><i style="--f:0; --c:1"></i><i style="--f:0; --c:2"></i><b data-count="33" data-suffix="%" data-delay="1350">33%</b>
+          </div>
+          <div class="cmp-row cmp-us rise" style="--d:1.1">
+            <div class="cmp-name" data-deck="name"></div><i style="--f:1; --c:0"></i><i style="--f:1; --c:1"></i><i style="--f:1; --c:2"></i><b data-count="100" data-suffix="%" data-delay="1600">100%</b>
+          </div>
+        </div>
       </div>
       <aside class="notes">
-        Floor-plan apps make you draw the room by hand. 3D tours and scanners capture the room as one
-        frozen model. Retail AR can erase your furniture and place the store's own products.
-        Nobody turns your existing furniture into separate objects you can move, and nobody lets you
-        bring in items from any website.
+        Each bar is split into the three things that matter: scanning your real room, moving your
+        own furniture, and adding items from any website. Floor-plan apps make you draw the room by hand.
+        3D tours and scanners capture the room as one frozen model. Retail AR only offers its own catalogue.
+        We are the only one that covers all three.
       </aside>
     </section>
 
-    <!-- 9 · GRANT ─────────────────────────────────────────── -->
+    <!-- 10 · GRANT ─────────────────────────────────────────── -->
     <section class="s-grant">
       <div class="frame split">
         <div class="col-text">
@@ -242,7 +272,7 @@
       </aside>
     </section>
 
-    <!-- 10 · TEAM ──────────────────────────────────────────── -->
+    <!-- 11 · TEAM ──────────────────────────────────────────── -->
     <section class="s-team">
       <div class="frame">
         <p class="kicker rise">Team</p>
@@ -252,7 +282,7 @@
       <aside class="notes">One sentence per person: what they own and why they are the right person.</aside>
     </section>
 
-    <!-- 11 · CLOSE ────────────────────────────────────────── -->
+    <!-- 12 · CLOSE ────────────────────────────────────────── -->
     <section class="s-close">
       <svg class="scene scene-bg" id="scene-close" aria-hidden="true"></svg>
       <div class="frame close-grid">

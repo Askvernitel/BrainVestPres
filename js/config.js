@@ -4,7 +4,7 @@
 window.DECK = {
   name: "Avegenie",
   tagline: "Scan your room. Move anything.",
-  logo: "assets/logo.svg",                     // TODO: replace with your logo file
+  logo: "assets/logo.svg",                     // transparent; assets/logo-bg.svg has the dark square (used as favicon)
   contact: "hello@yourdomain.ge",              // TODO: email / website
 
   // Business model slide prices (include the currency, e.g. "₾29").
@@ -29,10 +29,10 @@ window.DECK = {
     { name: "Name Surname", role: "Role", photo: "" },
   ],
 
-  // Problem slide chart: apartments sold in Tbilisi per year.
-  // 2021: TBC Capital · 2022–2023: Galt & Taggart (NAPR data) · 2024: market reports
-  // 2025: Colliers Georgia · 2020: derived from the reported +35% growth into 2021.
-  housing: [
+  // Market slide: three small charts. Keep the sources line in sync if you change data.
+  // Apartments sold in Tbilisi. 2021: TBC Capital · 2022–2023: Galt & Taggart (NAPR data)
+  // 2024: market reports · 2025: Colliers Georgia · 2020: derived from the reported +35% into 2021.
+  apartments: [
     { year: 2020, value: 28700, approx: true },
     { year: 2021, value: 38700 },
     { year: 2022, value: 42974 },
@@ -40,7 +40,27 @@ window.DECK = {
     { year: 2024, value: 41284 },
     { year: 2025, value: 42267 },
   ],
-  housingSource: "Apartments sold in Tbilisi. Sources: TBC Capital, Galt & Taggart (NAPR), Colliers Georgia. 2020 estimated.",
+  // Area of residential construction permits issued in Tbilisi, '000 m² (TAS via Galt & Taggart, Oct 2025, Fig. 8).
+  permits: [
+    { year: 2018, value: 913 },
+    { year: 2019, value: 1204 },
+    { year: 2020, value: 1374 },
+    { year: 2021, value: 1530 },
+    { year: 2022, value: 1422 },
+    { year: 2023, value: 1940 },
+    { year: 2024, value: 1810 },
+  ],
+  // Furniture & lighting sector revenue in Georgia, US$ mn (Geostat, SARAS via Galt & Taggart, Jun 2025). 2024 estimated.
+  furniture: [
+    { year: 2018, value: 327 },
+    { year: 2019, value: 306 },
+    { year: 2020, value: 270 },
+    { year: 2021, value: 295 },
+    { year: 2022, value: 430 },
+    { year: 2023, value: 504 },
+    { year: 2024, value: 511, approx: true },
+  ],
+  marketSource: "Sources: NAPR, TBC Capital, Colliers Georgia (apartments) · TAS (permits) · Geostat, SARAS (furniture & lighting, 2024 estimated) · via Galt & Taggart.",
 
   // Grant split (no amount shown).
   grant: [
