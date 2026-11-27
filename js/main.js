@@ -23,14 +23,16 @@
   const team = document.getElementById("team");
   D.team.forEach((m, i) => {
     const card = document.createElement("div");
-    card.className = "member flip";
-    card.style.setProperty("--d", (0.3 + i * 0.15).toFixed(2));
+    card.className = "member pop";
+    card.style.setProperty("--d", (0.4 + i * 0.2).toFixed(2));
     const initials = m.name.split(/\s+/).map((w) => w[0] || "").join("").slice(0, 2).toUpperCase();
     card.innerHTML =
-      `<div class="avatar">${m.photo ? `<img src="${m.photo}" alt="">` : initials}</div>` +
-      `<strong></strong><span></span>`;
+      `<div class="avatar-wrap"><svg class="ring" viewBox="0 0 100 100" aria-hidden="true">` +
+      `<circle class="draw" pathLength="1" cx="50" cy="50" r="48.5"/></svg>` +
+      `<div class="avatar">${m.photo ? `<img src="${m.photo}" alt="">` : initials}</div></div>` +
+      `<strong></strong><span class="role"></span>`;
     card.querySelector("strong").textContent = m.name;
-    card.querySelector("span").textContent = m.role;
+    card.querySelector(".role").textContent = m.role;
     team.appendChild(card);
   });
 

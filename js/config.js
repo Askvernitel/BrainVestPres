@@ -22,11 +22,11 @@ window.DECK = {
   demoVideo: "assets/demo.mp4",
   demoPoster: "assets/demo.jpg",
 
-  // TODO: team members. `photo` is optional (path to an image); initials are used otherwise.
+  // Team. `photo` is a square crop in assets/team; initials are used if it's empty.
   team: [
-    { name: "Name Surname", role: "Role", photo: "" },
-    { name: "Name Surname", role: "Role", photo: "" },
-    { name: "Name Surname", role: "Role", photo: "" },
+    { name: "Nikoloz Ejibadze", role: "CEO", photo: "assets/team/nikoloz.jpg" },
+    { name: "Daniel Kolotashvili", role: "CTO", photo: "assets/team/daniel.jpg" },
+    { name: "Irakli Gudiashvili", role: "CFO", photo: "assets/team/irakli.jpg" },
   ],
 
   // Market slide: three small charts. Keep the sources line in sync if you change data.
