@@ -24,9 +24,9 @@ window.DECK = {
 
   // Team. `photo` is a square crop in assets/team; initials are used if it's empty.
   team: [
-    { name: "Nikoloz Ejibadze", role: "CEO", photo: "assets/team/nikoloz.jpg" },
-    { name: "Daniel Kolotashvili", role: "CTO", photo: "assets/team/daniel.jpg" },
-    { name: "Irakli Gudiashvili", role: "CFO", photo: "assets/team/irakli.jpg" },
+    { name: "Nikoloz Ejibadze", role: "Mechanical engineer", photo: "assets/team/nikoloz.jpg" },
+    { name: "Daniel Kolotashvili", role: "Embedded developer", photo: "assets/team/daniel.jpg" },
+    { name: "Irakli Gudiashvili", role: "Full stack developer", photo: "assets/team/irakli.jpg" },
   ],
 
   // Market slide: three small charts. Keep the sources line in sync if you change data.
