@@ -419,12 +419,23 @@
   });
 
   let loopTimer = null;
+  let scanTimer = null;
+  const SCAN_DELAY = 250; // ms after the solution slide opens before the scan starts
   function onEnter(slide) {
     if (!slide) return;
     countUp(slide);
 
     if (slide.classList.contains("s-solution")) {
+      // step 1 (Scan) starts on its own when the slide opens; clicks then reveal the rest
+      clearTimeout(scanTimer);
+      if (!slide.querySelector(".fragment.visible")) {
+        scanTimer = setTimeout(() => {
+          if (Reveal.getCurrentSlide() === slide && !slide.querySelector(".fragment.visible")) Reveal.nextFragment();
+        }, SCAN_DELAY);
+      }
       setStep(sceneMain, slide.querySelectorAll(".fragment.visible").length);
+    } else {
+      setStep(sceneMain, 0); // reset, so the scan replays next time the slide opens
     }
 
     if (slide.classList.contains("s-demo")) video.play().catch(() => {});
@@ -444,5 +455,10 @@
     if (cur && cur.classList.contains("s-solution")) setStep(sceneMain, cur.querySelectorAll(".fragment.visible").length);
   };
   Reveal.on("fragmentshown", syncFrag);
-  Reveal.on("fragmenthidden", syncFrag);
+  Reveal.on("fragmenthidden", () => {
+    const cur = Reveal.getCurrentSlide();
+    // going back past Scan leaves the slide instead of showing an empty room
+    if (cur && cur.classList.contains("s-solution") && !cur.querySelector(".fragment.visible")) Reveal.prev();
+    else syncFrag();
+  });
 })();
