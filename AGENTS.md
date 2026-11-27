@@ -6,8 +6,8 @@ Context for AI agents working on this repo.
 
 Pitch deck for **Avegenie**: scan a room with a phone camera, every piece of furniture becomes a
 movable object, and new items come in from store integrations (Embawood, Saba, Pinterest…).
-The team is Georgian (Tbilisi); the deck is in English. The logo artwork was drawn under the
-working name "overfurn"; the product name is Avegenie.
+The team is Georgian (Tbilisi); the deck is in English. Logo: a genie lamp with a teal drawer rising out of it
+(`assets/logo.svg`); the older "overfurn" artwork is retired.
 
 Static [reveal.js](https://revealjs.com) deck. No build step, no package manager. 1920×1080 slides.
 
@@ -21,15 +21,16 @@ Live: https://askvernitel.github.io/BrainVestPres/ (GitHub Pages, deployed from 
 | `js/config.js` | **All editable content**: name, tagline, logo, prices, demo video, team, chart data + sources, grant split. Read via `window.DECK` (`D` in main.js) and `data-deck="key"` attributes. |
 | `js/main.js` | Builds the dynamic parts: team portraits, market charts, grant donut, isometric rooms (problem bed tour, solution steps, close background), count-ups, demo videos (every `<video data-demo>` restarts when its slide opens), Reveal init and per-slide enter hooks. |
 | `css/theme.css` | Design tokens at the top, then one block per slide. Motion primitives: `.rise`, `.pop`, `.flip`, `.draw` with `--d` (delay in s), replayed when a slide becomes `.present`. |
-| `assets/` | `logo.svg` (transparent), `logo-bg.svg` (dark square, favicon), `demo.mp4` + `demo.jpg` poster (played on the close slide), `team/*.jpg` (600×600 face crops). |
-| `tools/demo-video/scene.html` | Source of `assets/demo.mp4`. SVG animation driven by `window.renderAt(t)`; open in a browser to preview. |
+| `assets/` | `logo.svg` (genie lamp, transparent), `logo-bg.svg` (same on a dark rounded square, favicon), `demo.mp4` + `demo.jpg` poster (played on the close slide), `team/*.jpg` (600×600 face crops). |
+| `tools/demo-video/scene.html` | Source of `assets/demo.mp4`. SVG animation driven by `window.renderAt(t)`; open in a browser to preview. It shows `assets/logo.svg`, so re-render after a logo change. |
+| `tools/demo-video/render.mjs` | Frame renderer: drives headless Chrome over the DevTools protocol, no npm deps. |
 | `vendor/reveal/` | Vendored reveal.js. Don't edit. |
 
 Loose files in the root (`*.jpg`, `*.png`, `*.webp`, `overfurn*.svg`) are the user's originals; they are intentionally untracked.
 
 ## Slides (current order)
 
-1. Logo (name only, no subtitle)
+1. Logo: name + "Presented by Nikoloz Ejibadze" (`presenter` in config)
 2. Problem: "Where would you fit this bed?" — bed tours the four corners of an isometric room
 3. Solution: "Scan → Separate → Add & Rearrange". Scan starts on its own 250 ms after the slide opens (`SCAN_DELAY`); clicks reveal Separate, Rearrange, then store items (Embawood · Saba · Pinterest) dropping in. Keep this slide.
 4. Market: three line charts — apartments sold (Tbilisi), housing permitted (Tbilisi, permits area), furniture & lighting sales (Georgia, US$)
@@ -64,10 +65,10 @@ Loose files in the root (`*.jpg`, `*.png`, `*.webp`, `overfurn*.svg`) are the us
 ## Re-rendering the demo video
 
 1. Edit `tools/demo-video/scene.html` (timeline is in `renderAt`; captions in `CAPS`; total `DURATION`).
-2. Headless browser at 1920×1080 on `scene.html?render=1`, wait for `document.fonts.ready`, then for each frame `renderAt(i / 30)` + screenshot (JPEG).
+2. `mkdir -p .render/frames && node tools/demo-video/render.mjs <path-to-chrome-or-chrome-headless-shell> "file://$PWD/tools/demo-video/scene.html?render=1" "$PWD/.render/frames"` (`.render/` is git-ignored; delete it afterwards).
 3. Encode with the colour flags, or the background shifts darker/redder than the slide:
    ```
-   ffmpeg -framerate 30 -i f%04d.jpg \
+   ffmpeg -framerate 30 -i .render/frames/f%04d.jpg \
      -vf "scale=in_range=full:out_range=tv:out_color_matrix=bt709,format=yuv420p" \
      -c:v libx264 -preset slow -crf 20 \
      -colorspace bt709 -color_primaries bt709 -color_trc bt709 -color_range tv \

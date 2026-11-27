@@ -80,6 +80,8 @@
 /* ───────────────────────── 1 · Title ───────────────────────── */
 .s-title .logo { width: 260px; height: 260px; object-fit: contain; margin-bottom: 56px; }
 .s-title h1 { margin-bottom: 36px; }
+.s-title .presenter { font-size: 36px; color: var(--muted); }
+.s-title .presenter b { color: var(--amber); font-weight: 600; }
 .s-title .glow, .s-close .glow {
   position: absolute; width: 900px; height: 900px; border-radius: 50%;
   background: radial-gradient(circle, #ffb54726, transparent 65%);

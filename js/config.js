@@ -4,7 +4,8 @@
 window.DECK = {
   name: "Avegenie",
   tagline: "Scan your room. Move anything.",
-  logo: "assets/logo.svg",                     // transparent; assets/logo-bg.svg has the dark square (used as favicon)
+  presenter: "Nikoloz Ejibadze",                // title slide: "Presented by …"
+  logo: "assets/logo.svg",                     // Avegenie genie lamp, transparent; assets/logo-bg.svg = same on a dark square (favicon)
 
   // Business model slide prices (include the currency, e.g. "₾29").
   pricePro: "$10",                              // Professional plan
