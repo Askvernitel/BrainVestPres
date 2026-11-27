@@ -221,17 +221,36 @@
 .s-demo .frame { padding: 60px 150px; }
 
 /* ───────────────────────── 5 · Business ───────────────────────── */
-.tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-.tier {
-  background: var(--card); border-radius: 28px; padding: 56px 52px 64px; min-height: 340px; box-sizing: border-box;
-  box-shadow: 0 0 0 1px var(--line); position: relative; overflow: hidden;
+.plans { display: flex; align-items: flex-start; margin-top: 30px; }
+.plan { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-start; }
+.plan-vis { height: 170px; display: flex; align-items: center; }
+.plan h3 { margin-top: 30px; }
+.plan p { font-size: 32px; color: var(--muted); margin-top: 12px; }
+.price { font-size: 150px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.price small { font-size: 34px; font-weight: 500; letter-spacing: 0; color: var(--muted); margin-left: 12px; }
+.plan-biz .price > span, .plan-biz h3 { color: var(--amber); }
+
+/* six free scans: each dot fills in turn, like credits being used */
+.scans { display: grid; grid-template-columns: repeat(3, 52px); gap: 18px; align-content: center; }
+.scans i { position: relative; display: block; width: 52px; height: 52px; border-radius: 50%; box-shadow: inset 0 0 0 3px var(--teal); }
+.scans i::after { content: ""; position: absolute; inset: 11px; border-radius: 50%; background: var(--teal); opacity: 0.35; }
+.reveal section.present .scans i { animation: pop 0.5s var(--spring) both; animation-delay: calc(0.5s + var(--i) * 0.08s); }
+.reveal section.present .scans i::after { animation: spend 0.7s var(--ease) both; animation-delay: calc(1s + var(--i) * 0.14s); }
+@keyframes spend { 0% { opacity: 0; transform: scale(0); } 50% { opacity: 1; transform: scale(1.35); } 100% { opacity: 0.35; transform: scale(1); } }
+
+/* arrows between plans: draw in, then a dot keeps travelling along */
+.flow { flex: 1; position: relative; height: 4px; margin: 83px 56px 0; background: var(--line); border-radius: 2px; }
+.flow::before { content: ""; position: absolute; inset: 0; background: var(--amber); border-radius: inherit; transform-origin: left; }
+.flow::after {
+  content: ""; position: absolute; right: 2px; top: 50%; width: 18px; height: 18px;
+  border-top: 4px solid var(--amber); border-right: 4px solid var(--amber); transform: translateY(-50%) rotate(45deg);
 }
-.tier::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 6px; background: var(--muted); opacity: 0.5; }
-.tier h3 { margin-bottom: 28px; }
-.tier p { font-size: 34px; line-height: 1.35; color: var(--muted); }
-.tier-hl { background: linear-gradient(160deg, #2a2110, var(--card) 60%); box-shadow: 0 0 0 2px #ffb54766; }
-.tier-hl::before { background: var(--amber); opacity: 1; }
-.tier-hl h3 { color: var(--amber); }
+.flow .pulse { position: absolute; top: 50%; left: 0; width: 16px; height: 16px; margin: -8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 8px #ffb54733; opacity: 0; }
+.reveal section.present .flow::before { animation: grow 0.7s var(--ease) both; animation-delay: calc(var(--d) * 1s); }
+.reveal section.present .flow::after { animation: fade 0.3s ease both; animation-delay: calc(var(--d) * 1s + 0.6s); }
+.reveal section.present .flow .pulse { animation: travel 2.6s ease-in-out infinite; animation-delay: calc(var(--d) * 1s + 1.6s); }
+@keyframes grow { from { transform: scaleX(0); } }
+@keyframes travel { 0% { left: 0; opacity: 0; } 15%, 80% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
 
 /* ───────────────────────── 6 · Grant ───────────────────────── */
 .legend { list-style: none; padding: 0; margin: 0; display: grid; gap: 30px; }

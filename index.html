@@ -24,7 +24,6 @@
         <div class="glow"></div>
         <img class="logo pop" data-deck-logo alt="Logo"> <!-- TODO: logo via js/config.js -->
         <h1 class="rise" style="--d:.5" data-deck="name"></h1>
-        <p class="lead rise" style="--d:.8" data-deck="tagline"></p>
       </div>
       <aside class="notes">
         Open with the name and the promise: scan any room with a phone, then move the furniture
@@ -101,47 +100,36 @@
     <section class="s-business">
       <div class="frame">
         <p class="kicker rise">Business model</p>
-        <h2 class="rise" style="--d:.1">Free to try. <span class="muted">Paid to scale.</span></h2>
-        <div class="tiers">
-          <div class="tier rise" style="--d:.3">
-            <h3>Free</h3>
-            <p>Scan and rearrange your own home.</p>
+        <h2 class="rise" style="--d:.1">Try it free. <span class="muted">Then subscribe.</span></h2>
+        <div class="plans">
+          <div class="plan rise" style="--d:.3">
+            <div class="plan-vis scans" aria-hidden="true">
+              <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i>
+              <i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i>
+            </div>
+            <h3>Free trial</h3>
+            <p>6 scans</p>
           </div>
-          <div class="tier rise" style="--d:.45">
-            <h3>Pro</h3>
-            <p>Unlimited rooms. Share and export.</p>
+          <div class="flow" style="--d:2"><span class="pulse"></span></div>
+          <div class="plan rise" style="--d:2.5">
+            <div class="plan-vis"><span class="price"><span data-deck="pricePro"></span><small data-deck="pricePeriod"></small></span></div>
+            <h3>Professional</h3>
           </div>
-          <div class="tier tier-hl rise" style="--d:.6">
+          <div class="flow" style="--d:2.8"><span class="pulse"></span></div>
+          <div class="plan plan-biz pop" style="--d:3.3">
+            <div class="plan-vis"><span class="price"><span data-deck="priceBusiness"></span><small data-deck="pricePeriod"></small></span></div>
             <h3>Business</h3>
-            <p>Interactive listings for agencies, developers and furniture stores.</p>
           </div>
         </div>
       </div>
       <aside class="notes">
-        Freemium for individuals, a Pro subscription for heavy users, and B2B licences
-        (per listing or per seat) for real-estate agencies, developers and furniture retailers.
+        Anyone can try it free for six scans. After that it is a subscription: a Professional plan
+        for individual professional users, and a Business plan for agencies, developers and
+        furniture stores.
       </aside>
     </section>
 
-    <!-- 6 · GRANT ─────────────────────────────────────────── -->
-    <section class="s-grant">
-      <div class="frame split">
-        <div class="col-text">
-          <p class="kicker rise">The grant</p>
-          <h2 class="rise" style="--d:.1">Where every<br>lari goes.</h2>
-          <ul class="legend" id="grant-legend"></ul>
-        </div>
-        <div class="col-chart center">
-          <svg id="grant-donut" class="donut" viewBox="0 0 200 200" role="img" aria-label="Grant allocation"></svg>
-        </div>
-      </div>
-      <aside class="notes">
-        Most of the grant builds the product: reconstruction quality, object separation, speed.
-        Then compute for processing scans, first partnerships with agencies and stores, and operations.
-      </aside>
-    </section>
-
-    <!-- 7 · WHO NEEDS THIS ──────────────────────────────── -->
+    <!-- 6 · WHO NEEDS THIS ──────────────────────────────── -->
     <section class="s-who">
       <div class="frame">
         <p class="kicker rise">Who needs this</p>
@@ -171,7 +159,7 @@
       </aside>
     </section>
 
-    <!-- 8 · WHY DIFFERENT ───────────────────────────────── -->
+    <!-- 7 · WHY DIFFERENT ───────────────────────────────── -->
     <section class="s-diff">
       <div class="frame">
         <p class="kicker rise">Why we're different</p>
@@ -196,7 +184,7 @@
       </aside>
     </section>
 
-    <!-- 9 · COMPETITION ─────────────────────────────────── -->
+    <!-- 8 · COMPETITION ─────────────────────────────────── -->
     <section class="s-compete">
       <div class="frame">
         <p class="kicker rise">Compared to others</p>
@@ -233,6 +221,24 @@
         frozen model. Retail AR can erase your furniture and place the store's own products.
         Nobody turns your existing furniture into separate objects you can move, and nobody lets you
         bring in items from any website.
+      </aside>
+    </section>
+
+    <!-- 9 · GRANT ─────────────────────────────────────────── -->
+    <section class="s-grant">
+      <div class="frame split">
+        <div class="col-text">
+          <p class="kicker rise">The grant</p>
+          <h2 class="rise" style="--d:.1">Where every<br>lari goes.</h2>
+          <ul class="legend" id="grant-legend"></ul>
+        </div>
+        <div class="col-chart center">
+          <svg id="grant-donut" class="donut" viewBox="0 0 200 200" role="img" aria-label="Grant allocation"></svg>
+        </div>
+      </div>
+      <aside class="notes">
+        Most of the grant builds the product: reconstruction quality, object separation, speed.
+        Then compute for processing scans, first partnerships with agencies and stores, and operations.
       </aside>
     </section>
 

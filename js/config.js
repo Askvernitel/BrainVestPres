@@ -7,6 +7,11 @@ window.DECK = {
   logo: "assets/logo.svg",                     // TODO: replace with your logo file
   contact: "hello@yourdomain.ge",              // TODO: email / website
 
+  // Business model slide prices (include the currency, e.g. "₾29").
+  pricePro: "Y",                                // TODO: Professional price
+  priceBusiness: "X",                           // TODO: Business price
+  pricePeriod: "/ month",
+
   // Closing slide QR code. Drop your generated image at this path (png/svg).
   // Until the file exists, a dashed placeholder is shown.
   qr: "assets/qr.png",                         // TODO: generate and add
