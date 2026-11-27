@@ -48,7 +48,46 @@
       </aside>
     </section>
 
-    <!-- 3 · MARKET ─────────────────────────────────────── -->
+    <!-- 3 · SOLUTION ─────────────────────────────────────── -->
+    <section class="s-solution">
+      <div class="frame">
+        <div class="solution-head">
+          <p class="kicker rise">The solution</p>
+          <ol class="steps">
+            <li class="fragment" data-fragment-index="0"><span>01</span>Scan</li>
+            <li class="fragment" data-fragment-index="1"><span>02</span>Separate</li>
+            <li class="fragment" data-fragment-index="2"><span>03</span>Add &amp;<br>Rearrange</li>
+          </ol>
+          <span class="fragment step-trigger" data-fragment-index="3" aria-hidden="true"></span>
+        </div>
+        <svg class="scene" id="scene-main" aria-label="A room is scanned, furniture is separated, then moved"></svg>
+      </div>
+      <aside class="notes">
+        Click 1 · Scan: walk around the room taking photos; photogrammetry turns them into a 3D model.
+        Click 2 · Separate: RANSAC finds the largest planes (walls, floor, ceiling) and cuts them away.
+        What is left falls apart into separate islands, and each island is one piece of furniture.
+        Click 3 · Rearrange: every piece can now be moved on its own inside the real room.
+        Click 4 · Add: we integrate with Embawood, Saba, Pinterest and more; pick an item and it
+        drops into your room as a 3D object you can move like everything else.
+      </aside>
+    </section>
+
+    <!-- 4 · DEMO ─────────────────────────────────────────── -->
+    <section class="s-demo">
+      <div class="frame center">
+        <div class="demo-wrap pop">
+          <video id="demo-video" muted loop playsinline preload="auto"></video> <!-- TODO: assets/demo.mp4 -->
+          <div class="demo-placeholder">
+            <svg viewBox="0 0 48 48" width="96" height="96"><circle cx="24" cy="24" r="21" /><path d="M20 16 L33 24 L20 32 Z" /></svg>
+            <p>Demo video goes here</p>
+            <code>assets/demo.mp4</code>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">Live demo or recording: scan → separated furniture → drag pieces around.</aside>
+    </section>
+
+    <!-- 5 · MARKET ─────────────────────────────────────── -->
     <section class="s-market">
       <div class="frame">
         <p class="kicker rise">The market</p>
@@ -80,79 +119,7 @@
       </aside>
     </section>
 
-    <!-- 4 · SOLUTION ─────────────────────────────────────── -->
-    <section class="s-solution">
-      <div class="frame">
-        <div class="solution-head">
-          <p class="kicker rise">The solution</p>
-          <ol class="steps">
-            <li class="fragment" data-fragment-index="0"><span>01</span>Scan</li>
-            <li class="fragment" data-fragment-index="1"><span>02</span>Separate</li>
-            <li class="fragment" data-fragment-index="2"><span>03</span>Add &amp;<br>Rearrange</li>
-          </ol>
-          <span class="fragment step-trigger" data-fragment-index="3" aria-hidden="true"></span>
-        </div>
-        <svg class="scene" id="scene-main" aria-label="A room is scanned, furniture is separated, then moved"></svg>
-      </div>
-      <aside class="notes">
-        Click 1 · Scan: walk around the room taking photos; photogrammetry turns them into a 3D model.
-        Click 2 · Separate: RANSAC finds the largest planes (walls, floor, ceiling) and cuts them away.
-        What is left falls apart into separate islands, and each island is one piece of furniture.
-        Click 3 · Rearrange: every piece can now be moved on its own inside the real room.
-        Click 4 · Add: we integrate with Embawood, Saba, Pinterest and more; pick an item and it
-        drops into your room as a 3D object you can move like everything else.
-      </aside>
-    </section>
-
-    <!-- 5 · DEMO ─────────────────────────────────────────── -->
-    <section class="s-demo">
-      <div class="frame center">
-        <div class="demo-wrap pop">
-          <video id="demo-video" muted loop playsinline preload="auto"></video> <!-- TODO: assets/demo.mp4 -->
-          <div class="demo-placeholder">
-            <svg viewBox="0 0 48 48" width="96" height="96"><circle cx="24" cy="24" r="21" /><path d="M20 16 L33 24 L20 32 Z" /></svg>
-            <p>Demo video goes here</p>
-            <code>assets/demo.mp4</code>
-          </div>
-        </div>
-      </div>
-      <aside class="notes">Live demo or recording: scan → separated furniture → drag pieces around.</aside>
-    </section>
-
-    <!-- 6 · BUSINESS MODEL ──────────────────────────────── -->
-    <section class="s-business">
-      <div class="frame">
-        <p class="kicker rise">Business model</p>
-        <h2 class="rise" style="--d:.1">Try it free. <span class="muted">Then subscribe.</span></h2>
-        <div class="plans">
-          <div class="plan rise" style="--d:.3">
-            <div class="plan-vis scans" aria-hidden="true">
-              <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i>
-              <i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i>
-            </div>
-            <h3>Free trial</h3>
-            <p>6 scans</p>
-          </div>
-          <div class="flow" style="--d:2"><span class="pulse"></span></div>
-          <div class="plan rise" style="--d:2.5">
-            <div class="plan-vis"><span class="price"><span data-deck="pricePro"></span><small data-deck="pricePeriod"></small></span></div>
-            <h3>Professional</h3>
-          </div>
-          <div class="flow" style="--d:2.8"><span class="pulse"></span></div>
-          <div class="plan plan-biz pop" style="--d:3.3">
-            <div class="plan-vis"><span class="price"><span data-deck="priceBusiness"></span><small data-deck="pricePeriod"></small></span></div>
-            <h3>Business</h3>
-          </div>
-        </div>
-      </div>
-      <aside class="notes">
-        Anyone can try it free for six scans. After that it is a subscription: a Professional plan
-        for individual professional users, and a Business plan for agencies, developers and
-        furniture stores.
-      </aside>
-    </section>
-
-    <!-- 7 · WHO NEEDS THIS ──────────────────────────────── -->
+    <!-- 6 · WHO NEEDS THIS ──────────────────────────────── -->
     <section class="s-who">
       <div class="frame split">
         <div class="col-text">
@@ -192,6 +159,39 @@
       <aside class="notes">
         Buyers and renters planning a move. Agents who want listings people can play with.
         Designers who need the client's real room. Stores that want shoppers to try a sofa at home first.
+      </aside>
+    </section>
+
+    <!-- 7 · BUSINESS MODEL ──────────────────────────────── -->
+    <section class="s-business">
+      <div class="frame">
+        <p class="kicker rise">Business model</p>
+        <h2 class="rise" style="--d:.1">Try it free. <span class="muted">Then subscribe.</span></h2>
+        <div class="plans">
+          <div class="plan rise" style="--d:.3">
+            <div class="plan-vis scans" aria-hidden="true">
+              <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i>
+              <i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i>
+            </div>
+            <h3>Free trial</h3>
+            <p>6 scans</p>
+          </div>
+          <div class="flow" style="--d:2"><span class="pulse"></span></div>
+          <div class="plan rise" style="--d:2.5">
+            <div class="plan-vis"><span class="price"><span data-deck="pricePro"></span><small data-deck="pricePeriod"></small></span></div>
+            <h3>Professional</h3>
+          </div>
+          <div class="flow" style="--d:2.8"><span class="pulse"></span></div>
+          <div class="plan plan-biz pop" style="--d:3.3">
+            <div class="plan-vis"><span class="price"><span data-deck="priceBusiness"></span><small data-deck="pricePeriod"></small></span></div>
+            <h3>Business</h3>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        Anyone can try it free for six scans. After that it is a subscription: a Professional plan
+        for individual professional users, and a Business plan for agencies, developers and
+        furniture stores.
       </aside>
     </section>
 
