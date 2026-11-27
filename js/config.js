@@ -5,17 +5,11 @@ window.DECK = {
   name: "Avegenie",
   tagline: "Scan your room. Move anything.",
   logo: "assets/logo.svg",                     // transparent; assets/logo-bg.svg has the dark square (used as favicon)
-  contact: "hello@yourdomain.ge",              // TODO: email / website
 
   // Business model slide prices (include the currency, e.g. "₾29").
   pricePro: "$10",                              // Professional plan
   priceBusiness: "$100",                        // Business plan
   pricePeriod: "/ month",
-
-  // Closing slide QR code. Drop your generated image at this path (png/svg).
-  // Until the file exists, a dashed placeholder is shown.
-  qr: "assets/qr.png",                         // TODO: generate and add
-  qrCaption: "Scan to try it",
 
   // Demo slide: drop a screen recording at this path (mp4).
   // Until the file exists, the slide shows a placeholder frame.

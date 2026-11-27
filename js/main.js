@@ -13,10 +13,6 @@
   // ── Brand text / logo ─────────────────────────────────────
   document.querySelectorAll("[data-deck]").forEach((n) => (n.textContent = D[n.dataset.deck] || ""));
   document.querySelectorAll("[data-deck-logo]").forEach((n) => (n.src = D.logo));
-  document.querySelectorAll("[data-deck-qr]").forEach((n) => {
-    n.addEventListener("load", () => n.closest(".qr").classList.add("has-qr"));
-    n.src = D.qr;
-  });
   document.title = D.name + " · Pitch";
 
   // ── Team ──────────────────────────────────────────────────
@@ -193,8 +189,8 @@
     return { maxX, minY };
   }
 
-  function buildScene(svg, opts = {}) {
-    const { maxX, minY } = buildRoom(svg, opts.add ? 230 : 0);
+  function buildScene(svg) {
+    buildRoom(svg);
 
     FURNITURE.forEach((f, i) => {
       const [dx, dy] = f.move;
@@ -206,8 +202,6 @@
       const lift = el("g", { class: "lift surf" }, move);
       f.parts(lift);
     });
-
-    if (opts.add) buildAddFromWeb(svg, maxX, minY);
 
     // scan point cloud
     const r = rng(7);
@@ -233,104 +227,6 @@
       }
     });
     return svg;
-  }
-
-  // ── Store integrations (Embawood, Saba, Pinterest…): a browser window whose items
-  //    are dragged into the room and drop in as 3D objects (step 4).
-  const ADDED = [
-    {
-      key: "sofa", fp: [6.2, 3.3, 3.0, 1.2], target: [7.7, 3.9, 0.6], delay: 0.7,
-      parts: (g, [x, y, w, d]) => {
-        box(g, x, y, 0, w, d, 0.5);
-        box(g, x, y, 0.5, w, 0.32, 0.85);
-        box(g, x, y + 0.32, 0.5, 0.3, d - 0.32, 0.42);
-        box(g, x + w - 0.3, y + 0.32, 0.5, 0.3, d - 0.32, 0.42);
-      },
-    },
-    {
-      key: "plant", fp: [8.9, 6.3, 0.6, 0.6], target: [9.2, 6.6, 1.2], delay: 2.3,
-      parts: (g, [x, y, w, d]) => {
-        box(g, x, y, 0, w, d, 0.6, "pot");
-        [[0.3, 0.3, 1.5, 34], [0.1, 0.45, 1.15, 24], [0.5, 0.15, 1.2, 24], [0.35, 0.35, 1.95, 22]].forEach(([dx, dy, z, rr]) => {
-          const [cx, cy] = P(x + dx, y + dy, z);
-          el("ellipse", { class: "leaf", cx, cy, rx: rr, ry: rr * 0.8 }, g);
-        });
-      },
-    },
-  ];
-
-  // flat thumbnails shown inside the browser window (tile = 100×80)
-  const THUMBS = {
-    sofa: (g) => {
-      el("rect", { x: 18, y: 26, width: 64, height: 22, rx: 5, fill: "#c96a50" }, g);
-      el("rect", { x: 14, y: 40, width: 72, height: 18, rx: 5, fill: "#e07a5f" }, g);
-      el("rect", { x: 10, y: 34, width: 12, height: 26, rx: 4, fill: "#b95a42" }, g);
-      el("rect", { x: 78, y: 34, width: 12, height: 26, rx: 4, fill: "#b95a42" }, g);
-      el("rect", { x: 16, y: 60, width: 4, height: 7, fill: "#6b3a2a" }, g);
-      el("rect", { x: 80, y: 60, width: 4, height: 7, fill: "#6b3a2a" }, g);
-    },
-    plant: (g) => {
-      el("path", { d: "M38 50 H62 L58 70 H42 Z", fill: "#c97b4a" }, g);
-      [[50, 30, 13], [40, 38, 10], [60, 38, 10], [50, 18, 9]].forEach(([cx, cy, r]) => el("circle", { cx, cy, r, fill: "#4caf6e" }, g));
-    },
-    lamp: (g) => {
-      el("path", { d: "M36 18 H64 L70 40 H30 Z", fill: "#f2c14e" }, g);
-      el("rect", { x: 48, y: 40, width: 4, height: 24, fill: "#7a6a55" }, g);
-      el("rect", { x: 38, y: 64, width: 24, height: 5, rx: 2, fill: "#7a6a55" }, g);
-    },
-    frame: (g) => {
-      el("rect", { x: 24, y: 14, width: 52, height: 52, rx: 3, fill: "#8a7ad8" }, g);
-      el("rect", { x: 30, y: 20, width: 40, height: 40, fill: "#dfe6fb" }, g);
-      el("path", { d: "M30 60 L44 42 L52 50 L58 44 L70 60 Z", fill: "#6c8fd9" }, g);
-    },
-  };
-
-  function buildAddFromWeb(svg, roomMaxX, roomMinY) {
-    const bx = roomMaxX - 40, by = roomMinY - 40, bw = 250, bh = 300;
-    const win = el("g", { class: "browser" }, svg);
-    el("rect", { class: "browser-shadow", x: bx + 6, y: by + 12, width: bw, height: bh, rx: 16 }, win);
-    el("rect", { class: "browser-body", x: bx, y: by, width: bw, height: bh, rx: 16 }, win);
-    el("path", { class: "browser-bar", d: `M${bx} ${by + 40} V${by + 16} Q${bx} ${by} ${bx + 16} ${by} H${bx + bw - 16} Q${bx + bw} ${by} ${bx + bw} ${by + 16} V${by + 40} Z` }, win);
-    ["#ff5f57", "#febc2e", "#28c840"].forEach((c, i) => el("circle", { cx: bx + 18 + i * 14, cy: by + 20, r: 4.5, fill: c }, win));
-    el("rect", { class: "browser-url", x: bx + 66, y: by + 11, width: bw - 80, height: 18, rx: 9 }, win);
-    const url = el("text", { class: "browser-url-text", x: bx + 78, y: by + 24 }, win);
-    url.textContent = "inspiration board";
-
-    const label = el("text", { class: "browser-label", x: bx + bw / 2, y: by - 18, "text-anchor": "middle" }, win);
-    label.textContent = "EMBAWOOD · SABA · PINTEREST";
-
-    const tiles = { sofa: [0, 0], lamp: [1, 0], frame: [0, 1], plant: [1, 1] };
-    const bg = { sofa: "#f6e7de", lamp: "#fbf1d6", frame: "#e9e8f8", plant: "#e2f2e5" };
-    const tilePos = {};
-    for (const k in tiles) {
-      const [cx, cy] = tiles[k];
-      const tx = bx + 15 + cx * 115, ty = by + 56 + cy * 118;
-      tilePos[k] = [tx, ty];
-      const t = el("g", { class: "tile", transform: `translate(${tx} ${ty})` }, win);
-      el("rect", { width: 105, height: 105, rx: 10, fill: bg[k] }, t);
-      const art = el("g", { transform: "translate(2 12)" }, t);
-      THUMBS[k](art);
-    }
-
-    // 3D versions in the room + the dragged "ghost" thumbnails
-    ADDED.forEach((a) => {
-      const g = el("g", { class: "added", style: `--ad:${(a.delay + 1.05).toFixed(2)}s` }, svg);
-      const [x, y, w, d] = a.fp;
-      el("polygon", { class: "footprint landing", points: poly([[x - 0.15, y - 0.15, 0], [x + w + 0.15, y - 0.15, 0], [x + w + 0.15, y + d + 0.15, 0], [x - 0.15, y + d + 0.15, 0]]) }, g);
-      a.parts(el("g", { class: "drop" }, g), a.fp);
-    });
-    ADDED.forEach((a) => {
-      const [tx, ty] = tilePos[a.key];
-      const [gx, gy] = P(...a.target);
-      const ghost = el("g", {
-        class: "ghost",
-        style: `--gx:${(gx - (tx + 52)).toFixed(1)}px;--gy:${(gy - (ty + 52)).toFixed(1)}px;--gd:${a.delay}s`,
-      }, svg);
-      const inner = el("g", { transform: `translate(${tx} ${ty})` }, ghost);
-      el("rect", { class: "ghost-card", width: 105, height: 105, rx: 10 }, inner);
-      THUMBS[a.key](el("g", { transform: "translate(2 12)" }, inner));
-      el("path", { class: "cursor", d: "M62 58 L62 92 L70 84 L76 98 L82 95 L76 82 L87 82 Z" }, inner);
-    });
   }
 
   // ── Problem: one bed tours the four corners of an empty room ──
@@ -367,13 +263,8 @@
     box(bed, x + 0.04, y + 1.35, 0.6, w - 0.08, d - 1.35, 0.42, "blk"); // blanket
   })();
 
-  const sceneMain = buildScene(document.getElementById("scene-main"), { add: true });
   const sceneClose = buildScene(document.getElementById("scene-close"));
   sceneClose.classList.add("s1", "s2");
-
-  function setStep(scene, step) {
-    for (let s = 1; s <= 4; s++) scene.classList.toggle("s" + s, step >= s);
-  }
 
   // ── Count-up numbers ──────────────────────────────────────
   function countUp(slide) {
@@ -419,24 +310,9 @@
   });
 
   let loopTimer = null;
-  let scanTimer = null;
-  const SCAN_DELAY = 250; // ms after the solution slide opens before the scan starts
   function onEnter(slide) {
     if (!slide) return;
     countUp(slide);
-
-    if (slide.classList.contains("s-solution")) {
-      // step 1 (Scan) starts on its own when the slide opens; clicks then reveal the rest
-      clearTimeout(scanTimer);
-      if (!slide.querySelector(".fragment.visible")) {
-        scanTimer = setTimeout(() => {
-          if (Reveal.getCurrentSlide() === slide && !slide.querySelector(".fragment.visible")) Reveal.nextFragment();
-        }, SCAN_DELAY);
-      }
-      setStep(sceneMain, slide.querySelectorAll(".fragment.visible").length);
-    } else {
-      setStep(sceneMain, 0); // reset, so the scan replays next time the slide opens
-    }
 
     if (slide.classList.contains("s-demo")) video.play().catch(() => {});
     else video.pause();
@@ -450,15 +326,4 @@
 
   Reveal.on("ready", (e) => onEnter(e.currentSlide));
   Reveal.on("slidechanged", (e) => onEnter(e.currentSlide));
-  const syncFrag = () => {
-    const cur = Reveal.getCurrentSlide();
-    if (cur && cur.classList.contains("s-solution")) setStep(sceneMain, cur.querySelectorAll(".fragment.visible").length);
-  };
-  Reveal.on("fragmentshown", syncFrag);
-  Reveal.on("fragmenthidden", () => {
-    const cur = Reveal.getCurrentSlide();
-    // going back past Scan leaves the slide instead of showing an empty room
-    if (cur && cur.classList.contains("s-solution") && !cur.querySelector(".fragment.visible")) Reveal.prev();
-    else syncFrag();
-  });
 })();
